@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Controller</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <script src="/app/javascripts/jquery.min.js"></script>
+
+    <style media="screen">
+
+      .flex-container {
+        display: flex;
+      }
+
+      .flex-item {
+        width: 33%;
+      }
+      .flex-item img {
+        max-width: 100%;
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+    <div class="flex-container">
+      <div class="flex-item">
+        <img class="toggle-image" src="/images/test/photo1.jpeg" alt="">
+      </div>
+      <div class="flex-item">
+        <img class="toggle-image" id="glitch-test" src="/images/test/photo1-partial.gif" alt="">
+      </div>
+      <div class="flex-item">
+        <img class="toggle-image" src="/images/test/photo2.jpeg" alt="">
+      </div>
+      <div class="flex-item">
+        <img class="toggle-image" src="/images/test/photo3b.jpeg" alt="">
+      </div>
+      <div class="flex-item">
+        <img class="toggle-image" src="/images/test/photo4.jpeg" alt="">
+      </div>
+    </div>
+
+    <div class="">
+      <button id="refresh-btn">Refresh All</button>
+      <button id="show-token-btn">Show Tokens</button>
+      <button id="hide-token-btn">Hide Tokens</button>
+    </div>
+    <div class="">
+      <button id="single-image-test-btn">Single (Test)</button>
+    </div>
+    <div class="">
+      <button id="audio-test-btn">Play Audio (Test)</button>
+      <button id="audio-pause-test-btn">Pause Audio(Test)</button>
+      <button id="audio-stop-test-btn">Stop / Clear Audio (Test)</button>
+    </div>
+    <div class="">
+      <button id="random-color-test-btn">Random Color (Test)</button>
+      <button id="clear-color-test-btn">Remove Color (Test)</button>
+      <button id="black-color-test-btn">Black Color (Test)</button>
+    </div>
+    <div class="">
+      <button id="next-btn">Next ></button>
+    </div>
+
+
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+      // sockets
+      var socket = io();
+
+      $('.toggle-image').not('#glitch-test').click(function() {
+        $(this).addClass('active');
+        socket.emit('screen image', $(this).attr('src'));
+      })
+
+      $('#glitch-test').click(function() {
+        $(this).addClass('active');
+        socket.emit('screen image', {
+          "all": '/images/test/photo1.jpeg',
+          "SbT7nBw": '/images/test/photo1-partial.gif'
+        })
+      })
+
+
+
+      $('#refresh-btn').click(function() {
+        socket.emit('screen instruction', 'refresh');
+      })
+
+      $('#show-token-btn').click(function() {
+        socket.emit('screen instruction', 'show-token');
+      })
+
+      $('#hide-token-btn').click(function() {
+        socket.emit('screen instruction', 'hide-token');
+      })
+
+
+      // NOTE Testing
+      $('#single-image-test-btn').click(function() {
+        socket.emit('screen image', {'SbT7nBw': '/images/test/glitch1.gif'});
+      })
+      $('#audio-test-btn').click(function() {
+        socket.emit('screen audio', {'WTE4fvr': '/tv-static-05.mp3'});
+      })
+      $('#audio-pause-test-btn').click(function() {
+        socket.emit('screen audio', 'pause');
+      })
+      $('#audio-stop-test-btn').click(function() {
+        socket.emit('screen audio', 'stop');
+      })
+
+      $('#random-color-test-btn').click(function() {
+        var randomColor = "#000000".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
+        socket.emit('screen color', randomColor);
+        socket.emit('screen image', null);
+      })
+      $('#clear-color-test-btn').click(function() {
+        socket.emit('screen color', 'transparent');
+      })
+      $('#black-color-test-btn').click(function() {
+        socket.emit('screen color', '#000');
+        socket.emit('screen image', null);
+      })
+
+
+      // rapidly changing images test
+      $('#next-btn').click(switchToNextImage);
+
+      $('body').keypress(function(event) {
+        if ( event.which == 32 ) {
+           switchToNextImage();
+        }
+      });
+
+      function switchToNextImage() {
+        var nextImage = $('.active').parent().next('.flex-item').find('.toggle-image');
+
+        if (nextImage.length == 0 || nextImage === undefined) {
+          nextImage = $($('.toggle-image')[0]);
+        }
+
+        $('.toggle-image').removeClass('active');
+        nextImage.addClass('active');
+
+        socket.emit('screen image', {'all': nextImage.attr('src')});
+      }
+    </script>
+
+
+
+    <script type="text/javascript">
+      // TESTING: Random color
+      $('.fullscreen').click(function() {
+        var randomColor = "#000000".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
+        $(this).css('background-color', randomColor);
+
+        // send via socket
+        socket.emit('screen color', randomColor);
+      })
+    </script>
+
+
+
+
+
+  </body>
+</html>
