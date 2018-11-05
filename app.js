@@ -1,7 +1,10 @@
 var express       = require('express')
 var app           = express();
 var http          = require('http').Server(app);
-var io            = require('socket.io')(http);
+var io            = require('socket.io')(http, {
+    pingInterval: 5000,
+    pingTimeout: 5000
+});
 var Cookies       = require('cookies')
 var randomstring  = require("randomstring");
 

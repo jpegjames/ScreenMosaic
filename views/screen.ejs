@@ -81,7 +81,12 @@
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript">
       // sockets
-      var socket = io();
+      var socket = io.connect({
+        reconnection: true,
+        reconnectionDelay: 1000,
+        reconnectionDelayMax : 5000,
+        reconnectionAttempts: Infinity
+      });
 
       socket.on('screen image', function(msg) {
         setImage(msg, "<%= screenToken %>");
