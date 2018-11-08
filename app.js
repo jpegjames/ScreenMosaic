@@ -1,3 +1,14 @@
+// ================
+// Config
+// ================
+var port          = 1234;
+
+
+
+// ================
+// Setup Server
+// ================
+
 var express       = require('express')
 var app           = express();
 var http          = require('http').Server(app);
@@ -5,19 +16,17 @@ var io            = require('socket.io')(http, {
     pingInterval: 5000,
     pingTimeout: 5000
 });
-var Cookies       = require('cookies')
+var Cookies       = require('cookies');
 var randomstring  = require("randomstring");
 
-// ================
-// Setup Server
-// ================
-
-http.listen(3007, function(){
-  console.log('listening on *:3007');
+http.listen(port, function(){
+  console.log('listening on *:' + port);
 });
 
+
 // set the view engine to ejs (I'm a Ruby guy)
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
+
 
 // setup static path (`resources` has priority)
 app.use(express.static('resources'));
