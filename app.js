@@ -19,8 +19,9 @@ http.listen(3007, function(){
 // set the view engine to ejs (I'm a Ruby guy)
 app.set('view engine', 'ejs')
 
-// setup static path
-app.use(express.static('public'))
+// setup static path (`resources` has priority)
+app.use(express.static('resources'));
+app.use(express.static('public'));
 
 // ================
 // Views

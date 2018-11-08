@@ -1,6 +1,5 @@
 # ignore public folder (other than app directory)
 public/*
-!public/app/
 
 # ignore .DS_Store
 .DS_Store
