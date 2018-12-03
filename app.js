@@ -36,6 +36,83 @@ app.use(express.static('public'));
 // Views
 // ================
 
+
+  // ---------------------
+
+app.get('/resize', function(req, res) {
+  var fs = require('fs')
+  , gm = require('gm');
+
+  console.log("begin resize test")
+
+
+  // gm('public/images/test/photo1.jpeg')
+  // .crop(600,1024,0,0)
+  // .noProfile()
+  // .write('public/images/test/photo1-cropped-resized.jpg', function (err) {
+  //   if (!err) {
+  //     console.log("resized test successful");
+  //     res.send("<h1>resized test successful!</h1>")
+  //   } else {
+  //     res.send(err)
+  //   }
+  //
+  // });
+
+
+  screensJSON = loadScreens();
+
+  Object.keys(screensJSON).forEach(function(key) {
+    var screen = screensJSON[key];
+
+
+    cropForScreen('public/images/' + req.query.image, screen);
+    // cropForScreen('public/images/hunter/hunter3.jpg', screen);
+    // cropForScreen('public/images/hunter/hunter3.jpg', screen);
+    // cropForScreen('public/images/hunter/hunter4.jpg', screen);
+    // cropForScreen('public/images/hunter/hunter5.jpg', screen);
+    // cropForScreen('public/images/hunter/hunter6.jpg', screen);
+    // cropForScreen('public/images/hunter/hunter7.jpg', screen);
+    // cropForScreen('public/images/hunter/hunter8.jpg', screen);
+
+  });
+
+  res.send("<h1>Done!</h1>");
+
+})
+
+function cropForScreen(image_path, screen) {
+  var fs = require('fs')
+  , gm = require('gm')
+  , quality = 30
+  , re = /(?:\.([^.]+))?$/;
+
+  // console.log(screen["id"], screen["width"], screen["height"], screen["left"], screen["top"]);
+
+  var ext = re.exec(image_path)[0];
+  var new_image_path = image_path.replace(ext, '') + "-" + screen["id"] + ext;
+
+  gm(image_path)
+  .crop(screen["width"], screen["height"], screen["left"], screen["top"])
+  .noProfile()
+  .quality(quality)
+  .write(new_image_path, function(err) {
+    if (err) {
+      console.log("Error on screen " + screen["id"] + ":")
+      console.log(err)
+    } else {
+      console.log("Cropped image for screen " + screen["id"] + "!")
+    }
+  })
+}
+
+
+
+  // ---------------------
+
+
+
+
 // Default:
 // Renders view for device within the screen array
 app.get('/', function(req, res) {
@@ -52,7 +129,7 @@ app.get('/', function(req, res) {
 
 
   // Create a cookies object
-  var cookies = new Cookies(req, res)
+  var cookies = new Cookies(req, res);
 
   // Cookies
   // step 1: check for cookie
@@ -75,16 +152,30 @@ app.get('/', function(req, res) {
     } else {
       return s.token == screenToken
     }
-  })[0]
+  })[0];
 
   if (req.query.id) {
     screenToken = screenData["token"];
   }
 
-  console.log(req.query.id)
+  if (screenData && screenData["viewport"] !== undefined) {
+    viewport = screenData["viewport"];
+  } else if (screenData && screenData["width"] !== undefined) {
+    viewport = "width=" + screenData["width"];
+  } else {
+    viewport = "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0";
+  }
+
+  console.log(req.query.id);
   console.log(screenData);
 
-  res.render('screen', {screenData: screenData, screenToken: screenToken});
+  res.render('screen', {screenData: screenData, screenToken: screenToken, viewport: viewport});
+});
+
+// possibly temp
+//
+app.get('/preview', function(req, res) {
+  res.render('preview');
 });
 
 // Controller:

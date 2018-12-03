@@ -1,39 +1,79 @@
-// --- Image functionality
-//
-// set image
-// NOTE 'image' may not be the best as it can also set color and canvas
-function setImage(data, screenToken) {
-  if (data == null) {
-    $('#render img').hide();
-  } else if (typeof(data) === 'string') {
-    setCroppedImage(data);
-  } else {
-    setCroppedImage(data["all"]);
-
-    if (data[screenToken] !== undefined) {
-      setSingleImage(data[screenToken]);
-    }
-  }
-}
-
-function setCroppedImage(src) {
-  var dom = $('#render img');
-  dom.attr('src', src);
-  dom.removeClass('single');
-  dom.show(); // NOTE This should unload the previous or preload the new image before displaying to prevent flashing of old image 
-}
-
-function setSingleImage(src) {
-  var dom = $('#render img');
-  dom.addClass('single');
-  dom.attr('src', src);
-  dom.show(); // NOTE This should unload the previous or preload the new image before displaying to prevent flashing of old image 
-}
-
+// --- Visual functionality
 
 function setColor(color) {
   $('#render').css('background-color', color);
 }
+
+// set image
+function setImage(data, screenToken, screenID) {
+
+  // clear and hide image (end function)
+  if (data == null){
+    $('#render img').attr('src', '#').hide();
+    return true;
+  }
+
+  // if only path is passed, set same image for all screens (end function)
+  if (typeof(data) === 'string') {
+    _setSingleImage(data);
+    return true;
+  }
+
+  // set single image for this screen based off screenToken (end function)
+  if (data[screenToken] !== undefined) {
+    _setSingleImage(data[screenToken]);
+    return true;
+  }
+
+  // set single image for this screen based off screenID (end function)
+  if (data[screenID] !== undefined) {
+    _setSingleImage(data[screenID]);
+    return true;
+  }
+
+  // preprocessed
+  if (data["preprocessed"] !== undefined) {
+    _setPreprocessedImage(data["preprocessed"], screenID);
+    return true;
+  }
+
+  // cover
+  if (data["cover"] !== undefined) {
+    _setCoverImage(data["cover"]);
+    return true;
+  }
+
+  // set same image for all screens
+  _setSingleImage(data["all"]);
+  return true;
+}
+
+
+
+function _setSingleImage(src) {
+  var dom = $('#render img');
+  dom.addClass('single');
+  dom.attr('src', src);
+  dom.show();
+}
+
+function _setPreprocessedImage(unprocessed_src, screenID) {
+  var re = /(?:\.([^.]+))?$/;
+  var ext = re.exec(unprocessed_src)[0];
+  var processed_src = unprocessed_src.replace(ext, '') + '-' + screenID + ext;
+
+  _setSingleImage(processed_src);
+}
+
+function _setCoverImage(src) {
+  var dom = $('#render img');
+  dom.removeClass('single');
+  dom.attr('src', src);
+  dom.show();
+}
+
+
+
 
 // --- Audio functionality
 //

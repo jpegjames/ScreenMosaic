@@ -1,18 +1,592 @@
 [
   {
     "id": 1,
-    "token": "yiBcwoo",
-    "top": 210,
-    "left": 0,
-    "scale": 0.75
+    "token": "kqqtfpP",
+    "top": 120,
+    "left": 1295,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": ""
   },
   {
     "id": 2,
-    "token": "kz0MDL5",
-    "top": 210,
-    "left": 710,
-    "scale": 0.75
+    "token": "EpRHlL3",
+    "top": 495,
+    "left": 2025,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": ""
   },
+  {
+    "id": 3,
+    "token": "5dmNkjH",
+    "top": 550,
+    "left": 2630,
+    "width": 1024,
+    "height": 600,
+    "scale": 1,
+    "notes": ""
+  },
+  {
+    "id": 4,
+    "token": "3174vgQ",
+    "top": 525,
+    "left": 4060,
+    "width": 1024,
+    "height": 600,
+    "scale": 1,
+    "notes": ""
+  },
+  {
+    "id": 5,
+    "token": "X12YbhR",
+    "top": 540,
+    "left": 4900,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": ""
+  },
+  {
+    "id": 6,
+    "token": "7h2zAFz",
+    "top": 0,
+    "left": 4485,
+    "width": 600,
+    "height": 1024,
+    "old_scale": 0.8,
+    "scale": 1,
+    "viewport": "width=942",
+    "notes": "ipad"
+  },
+  {
+    "id": 7,
+    "token": "4ddpgYu",
+    "top": 305,
+    "left": 7000,
+    "width": 1024,
+    "height": 600,
+    "scale": 1,
+    "notes": "left"
+  },
+  {
+    "id": 8,
+    "token": "tBjqxwJ",
+    "top": 595,
+    "left": 7000,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": "left"
+  },
+  {
+    "id": 9,
+    "token": "MbbO9lL",
+    "top": 595,
+    "left": 7000,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": "left"
+  },
+
+
+  {
+    "id": 10,
+    "token": "fOADPHW",
+    "top": 1710,
+    "left": 0,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": " "
+  },
+  {
+    "id": 11,
+    "token": "QmylIsp",
+    "top": 35,
+    "left": -890,
+    "width": 600,
+    "height": 1024,
+    "old_scale": 3,
+    "scale": 1,
+    "viewport": "width=942",
+    "notes": "ipad"
+  },
+  {
+    "id": 12,
+    "token": "djtJLaB",
+    "top": 1700,
+    "left": 2035,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": ""
+  },
+  {
+    "id": 13,
+    "token": "yHyjd4T",
+    "top": 1295,
+    "left": 2795,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": ""
+  },
+  {
+    "id": 14,
+    "token": "Idn13Ig",
+    "top": 1355,
+    "left": 1500,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": "top left"
+  },
+  {
+    "id": 15,
+    "token": "Pby1hY4",
+    "top": 1225,
+    "left": 4040,
+    "width": 1024,
+    "height": 600,
+    "scale": 1,
+    "notes": " "
+  },
+  {
+    "id": 16,
+    "token": "RfC8Ncm",
+    "top": 1505,
+    "left": 5590,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": " left"
+  },
+  {
+    "id": 17,
+    "token": "iPL1jPY",
+    "top": 1070,
+    "left": 7000,
+    "width": 1024,
+    "height": 600,
+    "scale": 1,
+    "notes": " left"
+  },
+
+
+  {
+    "id": 18,
+    "token": "s3BZE2X",
+    "top": 2755,
+    "left": 380,
+    "width": 1024,
+    "height": 600,
+    "scale": 1,
+    "notes": " "
+  },
+  {
+    "id": 19,
+    "token": "2aaWUS0",
+    "top": 2760,
+    "left": 1540,
+    "width": 1024,
+    "height": 600,
+    "scale": 1,
+    "notes": ""
+  },
+  {
+    "id": 20,
+    "token": "4RQ7hpz",
+    "top": 2175,
+    "left": 2155,
+    "width": 600,
+    "height": 1024,
+    "old_scale": 0.86,
+    "scale": 1,
+    "viewport": "width=942",
+    "notes": "ipad - scale may be off"
+  },
+  {
+    "id": 21,
+    "token": "Mav9KLM",
+    "top": 1770,
+    "left": 3500,
+    "width": 600,
+    "height": 1024,
+    "old_scale": 0.86,
+    "scale": 1,
+    "viewport": "width=942",
+    "notes": "ipad scale may be slightly off"
+  },
+  {
+    "id": 22,
+    "token": "5tianHa",
+    "top": 210,
+    "left": 2940,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": "top left - red tablet with wifi issue"
+  },
+  {
+    "id": 23,
+    "token": "OFI4IpL",
+    "top": 2300,
+    "left": 5595,
+    "width": 1024,
+    "height": 600,
+    "scale": 1,
+    "notes": " "
+  },
+  {
+    "id": 24,
+    "token": "BPgHQFM",
+    "top": 420,
+    "left": 7000,
+    "width": 600,
+    "height": 1024,
+    "old_scale": 3,
+    "scale": 1,
+    "viewport": "width=942",
+    "notes": "ipad- left"
+  },
+  {
+    "id": 25,
+    "token": "RKd3XjZ",
+    "top": 1910,
+    "left": 7000,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": " left"
+  },
+
+
+
+  {
+    "id": 26,
+    "token": "9XnrF8q",
+    "top": 3150,
+    "left": 720,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": " "
+  },
+  {
+    "id": 27,
+    "token": "zU6fiJd",
+    "top": 3160,
+    "left": 1420,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": " "
+  },
+  {
+    "id": 28,
+    "token": "Y8HfCIm",
+    "top": 3160,
+    "left": 2170,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": " "
+  },
+  {
+    "id": 29,
+    "token": "nuvbvBM",
+    "top": 2185,
+    "left": 1860,
+    "width": 600,
+    "height": 1024,
+    "old_scale": 0.73,
+    "scale": 1,
+    "viewport": "width=942",
+    "notes": "ipad",
+    "notes": "scale is likely off",
+    "notes": "why is this scale different than the other iPads?"
+  },
+  {
+    "id": 30,
+    "token": "1o4XlZ6",
+    "top": 2450,
+    "left": 3225,
+    "width": 600,
+    "height": 1024,
+    "old_scale": 0.8,
+    "scale": 1,
+    "viewport": "width=942",
+    "notes": " - iPad not full screen (maybe updated ???)"
+  },
+  {
+    "id": 31,
+    "token": "6pXQsk7",
+    "top": 2940,
+    "left": 4745,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": " "
+  },
+  {
+    "id": 32,
+    "token": "2T5X3aC",
+    "top": 2900,
+    "left": 5635,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": " "
+  },
+  {
+    "id": 33,
+    "token": "9XRjpS8",
+    "top": 2935,
+    "left": 6395,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": " left"
+  },
+  {
+    "id": 34,
+    "token": "coBWGUn",
+    "top": 2935,
+    "left": 7000,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": " left"
+  },
+  {
+    "id": 35,
+    "token": "knavV5A",
+    "top": 2870,
+    "left": 7000,
+    "width": 600,
+    "height": 1024,
+    "old_scale": 0.8,
+    "scale": 1,
+    "viewport": "width=942",
+    "notes": " left - iPad not full screen app"
+  },
+
+
+
+  {
+    "id": 36,
+    "token": "aoFtxwQ",
+    "top": 5000,
+    "left": 435,
+    "width": 1024,
+    "height": 600,
+    "scale": 1,
+    "notes": "top"
+  },
+  {
+    "id": 37,
+    "token": "7yYZlhD",
+    "top": 5000,
+    "left": 1645,
+    "width": 1024,
+    "height": 600,
+    "scale": 1,
+    "notes": "top - something seems slightly off with this and the screen above"
+  },
+  {
+    "id": 38,
+    "token": "lEfiDxN",
+    "top": 5000,
+    "left": 2450,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": "top "
+  },
+  {
+    "id": 39,
+    "token": "",
+    "top": 5000,
+    "left": 710,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": "top left - wifi issues"
+  },
+  {
+    "id": 40,
+    "token": "NTpj49U",
+    "top": 5000,
+    "left": 4055,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": "top "
+  },
+  {
+    "id": 41,
+    "token": "UtqysLn",
+    "top": 5000,
+    "left": 4445,
+    "width": 1024,
+    "height": 600,
+    "scale": 1,
+    "notes": "top "
+  },
+  {
+    "id": 42,
+    "token": "OtuK2qp",
+    "top": 3750,
+    "left": 4725,
+    "width": 1024,
+    "height": 600,
+    "scale": 1,
+    "notes": " "
+  },
+  {
+    "id": 43,
+    "token": "lhtO0b0",
+    "top": 3750,
+    "left": 5985,
+    "width": 1024,
+    "height": 600,
+    "scale": 1,
+    "notes": " left"
+  },
+  {
+    "id": 44,
+    "token": "",
+    "top": 5000,
+    "left": 7000,
+    "width": 1024,
+    "height": 600,
+    "scale": 1,
+    "notes": "top left - blue tablet wifi issue"
+  },
+  {
+    "id": 45,
+    "token": "HXZbhb4",
+    "top": 3750,
+    "left": 7000,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": "top left"
+  },
+  {
+    "id": 46,
+    "token": "6WhIxiw",
+    "top": 5000,
+    "left": 5720,
+    "width": 1024,
+    "height": 600,
+    "scale": 1,
+    "notes": "top left"
+  },
+  {
+    "id": 47,
+    "token": "L0BGDat",
+    "top": 5000,
+    "left": 6945,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": "top left"
+  },
+  {
+    "id": 48,
+    "token": "W3p9sL4",
+    "top": 5000,
+    "left": 7000,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": "top left"
+  },
+  {
+    "id": 49,
+    "token": "ELwtZow",
+    "top": 5000,
+    "left": 6960,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": "top left"
+  },
+
+
+
+  {
+    "id": 50,
+    "token": "OQhqDHb",
+    "top": 5000,
+    "left": 1115,
+    "width": 600,
+    "height": 1024,
+    "old_scale": 0.8,
+    "scale": 1,
+    "viewport": "width=942",
+    "notes": "not sure of the viewport setting",
+    "notes": "top left - possibly left"
+  },
+  {
+    "id": 51,
+    "token": "vB61wiL",
+    "top": 5000,
+    "left": 1670,
+    "width": 1024,
+    "height": 600,
+    "scale": 1,
+    "notes": "top"
+  },
+  {
+    "id": 52,
+    "token": "h9Vk9Wp",
+    "top": 5000,
+    "left": 1660,
+    "width": 1024,
+    "height": 600,
+    "scale": 1,
+    "notes": "top"
+  },
+  {
+    "id": 53,
+    "token": "HiQYzGE",
+    "top": 5000,
+    "left": 2515,
+    "width": 1024,
+    "height": 600,
+    "scale": 1,
+    "notes": "top"
+  },
+  {
+    "id": 54,
+    "token": "",
+    "top": 5000,
+    "left": 710,
+    "width": 1024,
+    "height": 600,
+    "scale": 1,
+    "notes": "top left - wifi issue"
+  },
+  {
+    "id": 55,
+    "token": "GDIm0Wj",
+    "top": 5000,
+    "left": 5700,
+    "width": 1024,
+    "height": 600,
+    "scale": 1,
+    "notes": "top left"
+  },
+
+
+
+
 
 
 
@@ -21,6 +595,8 @@
     "token": "joHPpX2",
     "top": 0,
     "left": 0,
+    "width": 600,
+    "height": 1024,
     "scale": 1
   },
   {
@@ -28,6 +604,8 @@
     "token": "5AEewBH",
     "top": 0,
     "left": 700,
+    "width": 600,
+    "height": 1024,
     "scale": 1
   },
   {
@@ -35,6 +613,8 @@
     "token": "9J9Dbgz",
     "top": 0,
     "left": 1400,
+    "width": 600,
+    "height": 1024,
     "scale": 1
   },
   {
@@ -42,6 +622,8 @@
     "token": "WTE4fvr",
     "top": 900,
     "left": 0,
+    "width": 600,
+    "height": 1024,
     "scale": 1
   },
   {
@@ -49,6 +631,8 @@
     "token": "SbT7nBw",
     "top": 900,
     "left": 700,
+    "width": 600,
+    "height": 1024,
     "scale": 1
   },
   {
@@ -56,6 +640,8 @@
     "token": "O0fzp7P",
     "top": 900,
     "left": 1400,
+    "width": 600,
+    "height": 1024,
     "scale": 1
   },
   {
@@ -63,7 +649,32 @@
     "token": "NtZNZu9",
     "top": 1800,
     "left": 0,
+    "width": 600,
+    "height": 1024,
     "scale": 1
+  },
+
+
+  {
+    "id": 201,
+    "token": "nESb4Nn",
+    "top": 2450,
+    "left": 3225,
+    "width": 600,
+    "height": 1024,
+    "scale": 1,
+    "notes": "Amazon Fire"
+  },
+  {
+    "id": 202,
+    "token": "y8f9jod",
+    "top": 2450,
+    "left": 3225,
+    "width": 982,
+    "height": 1675,
+    "scale": 1,
+    "_viewport": "width=982",
+    "notes": "iPad Air - 1.636666x size of Amazon Fire"
   }
 
 

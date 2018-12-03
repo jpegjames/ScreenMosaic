@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ScreenMosaic Preview</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <script src="/javascripts/jquery.min.js"></script>
+    <script src="/javascripts/screen.js"></script>
+
+    <style media="screen">
+      html, body {
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+      }
+      body {
+        /* default background */
+        /* background: url('https://www.toptal.com/designers/subtlepatterns/images/transp_bg.png'); */
+        background: #ccc;
+      }
+
+      #render {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      #render .media {
+        position: relative;
+        transform-origin: top left;
+
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      #render .media.single {
+        top: 0 !important;
+        left: 0 !important;
+        /* reset scale? */
+      }
+
+      section#token-container {
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        padding-top: 200px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 30px;
+      }
+      section#token-container .token {
+        font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+        font-size: 60px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- <div class="render" style=""></div> -->
+
+    <section id="render">
+      <img src="" class="media">
+    </section>
+
+
+
+
+
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+      // sockets
+      var socket = io.connect({
+        reconnection: true,
+        reconnectionDelay: 1000,
+        reconnectionDelayMax : 5000,
+        reconnectionAttempts: Infinity
+      });
+
+      socket.on('screen image', function(msg) {
+        setImage(msg, null);
+      });
+
+      socket.on('screen color', function(msg) {
+        setColor(msg, null);
+      });
+
+      socket.on('screen audio', function(msg) {
+        switch(msg) {
+          case 'pause':
+            pauseAudio();
+            break;
+          case 'stop':
+            stopAudio();
+            break;
+          default:
+            setAudio(msg, null);
+        }
+      });
+
+      socket.on('screen instruction', function(msg) {
+        switch(msg) {
+          case 'refresh':
+            location.reload();
+            break;
+          case 'redirect':
+            location.assign('http://172.16.16.199:1234/ScreenTile.apk');
+            break;
+          case 'show-token':
+            $('#token-container').show();
+            break;
+          case 'hide-token':
+            $('#token-container').hide();
+            break;
+          case 'mute':
+            $('#render').hide();
+            $('#token-container').hide();
+            $('body').css('background', '#000');
+            pauseAudio();
+            break;
+          case 'unmute':
+            $('#render').show();
+            $('body').css('background', '#ccc');
+            playAudio();
+            break;
+          case 'css':
+            handleCSS(msg);
+            break;
+          default:
+            handleCSS(msg);
+
+            // console.log('Unkown `screen instruction` command');
+        }
+      });
+
+      function handleCSS(msg) {
+        // console.log(msg);
+
+
+      }
+
+    </script>
+
+
+  </body>
+</html>
