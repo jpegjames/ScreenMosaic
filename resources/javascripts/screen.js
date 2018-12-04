@@ -1,5 +1,16 @@
-// --- Visual functionality
+// --- Grid functionality
+//
+function setGrid(b) {
+  if (b == true) {
+    $('#grid').show();
+  } else if (b == false) {
+    $('#grid').hide();
+  }
+}
 
+
+// --- Visual functionality
+//
 function setColor(color) {
   $('#render').css('background-color', color);
 }
@@ -52,7 +63,7 @@ function setImage(data, screenToken, screenID) {
 
 function _setSingleImage(src) {
   var dom = $('#render img');
-  dom.addClass('single');
+  dom.removeClass('offset');
   dom.attr('src', src);
   dom.show();
 }
@@ -67,7 +78,7 @@ function _setPreprocessedImage(unprocessed_src, screenID) {
 
 function _setCoverImage(src) {
   var dom = $('#render img');
-  dom.removeClass('single');
+  dom.addClass('offset');
   dom.attr('src', src);
   dom.show();
 }

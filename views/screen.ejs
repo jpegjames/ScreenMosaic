@@ -29,13 +29,6 @@
 
       #render .media {
         position: relative;
-        top: -<%= screenData === undefined ? 0 : screenData.top %>px;
-        left: -<%= screenData === undefined ? 0 : screenData.left %>px;
-      }
-
-      #render .media.single {
-        top: 0 !important;
-        left: 0 !important;
       }
 
       section#token-container {
@@ -55,18 +48,31 @@
         font-size: 60px;
         font-weight: bold;
       }
+
+      #grid {
+        background-image: url("/images/grid-overlay-x.png"), url("/images/grid-overlay-y.png"), url("/images/grid-pattern.png");
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        display: none;
+      }
+
+      .offset {
+        top: -<%= (screenData === undefined) ? 0 : screenData.top %>px;
+        left: -<%= (screenData === undefined) ? 0 : screenData.left %>px;
+      }
     </style>
   </head>
 
   <body>
-    <!-- <div class="render" style=""></div> -->
 
     <section id="render">
-      <img src="" class="media">
+      <div id="grid" class="offset"></div>
+      <img src="" class="media offset">
     </section>
 
 
-    <section id="token-container" style="<%= screenData === undefined ? 'display: block;' : 'display: none;' %>">
+    <section id="token-container" style="<%= (screenData === undefined) ? 'display: block;' : 'display: none;' %>">
       <% if (screenData === undefined) { %>
         <div class="message">Screen not yet defined in `screens.json`</div>
       <% } else { %>
@@ -89,8 +95,12 @@
         reconnectionAttempts: Infinity
       });
 
+      socket.on('screen grid', function(msg) {
+        setGrid(msg);
+      });
+
       socket.on('screen image', function(msg) {
-        setImage(msg, "<%= screenToken %>", "<%= screenData['id'] %>");
+        setImage(msg, "<%= screenToken %>", <%= (screenData) ? screenData['id'] : null %>);
       });
 
       socket.on('screen color', function(msg) {
@@ -146,8 +156,8 @@
         console.log(msg);
 
         if (msg["token"] == "<%= screenToken %>") {
-          $('#render .media').css("top", msg["top"]);
-          $('#render .media').css("left", msg["left"]);
+          $('#render .offset').css("top", msg["top"]);
+          $('#render .offset').css("left", msg["left"]);
           // $('#render .media').css("transform", "scale(" + msg["scale"] + ")");
         }
       }

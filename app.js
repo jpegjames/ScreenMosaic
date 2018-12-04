@@ -225,6 +225,9 @@ io.on('connection', function(socket){
     // console.log('user disconnected');
   });
 
+  socket.on('screen grid', function(msg){
+    console.log('grid: ' + msg);
+    io.emit('screen grid', msg);
   });
 
   socket.on('screen image', function(msg){
