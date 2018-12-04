@@ -11,6 +11,16 @@ function muteScreens() {
 function unmuteScreens() {
   socket.emit('screen instruction', 'unmute');
 }
+function clearImages() {
+  socket.emit('screen image', null);
+}
+
+function showGrid() {
+  socket.emit('screen grid', true);
+}
+function hideGrid() {
+  socket.emit('screen grid', false);
+}
 
 function showTokens() {
   socket.emit('screen instruction', 'show-token');
