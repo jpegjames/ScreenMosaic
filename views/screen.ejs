@@ -58,6 +58,11 @@
         display: none;
       }
 
+      #video {
+        height: 100%;
+        width: 100%;
+      }
+
       .offset {
         top: -<%= (screenData === undefined) ? 0 : screenData.top %>px;
         left: -<%= (screenData === undefined) ? 0 : screenData.left %>px;
@@ -69,6 +74,12 @@
 
     <section id="render">
       <div id="grid" class="offset"></div>
+
+      <!-- https://webkit.org/blog/6784/new-video-policies-for-ios/ -->
+      <!-- Webkit / iOS 10+: <video muted> elements will also be allowed to autoplay without a user gesture. -->
+      <!-- test source: https://www.w3schools.com/html/mov_bbb.mp4 -->
+      <video id="video" autoplay playsinline muted></video>
+
       <img src="" class="media offset">
     </section>
 
@@ -107,6 +118,28 @@
       socket.on('screen color', function(msg) {
         setColor(msg, "<%= screenToken %>");
       });
+
+      socket.on('screen video', function(msg) {
+        switch(msg) {
+          case 'play':
+            playVideo();
+            break;
+          case 'pause':
+            pauseVideo();
+            break;
+          case 'stop':
+            stopVideo();
+            break;
+          case 'loop':
+            loopVideo();
+            break;
+          case 'unloop':
+            unloopVideo();
+            break;
+          default:
+            setVideo(msg, "<%= screenToken %>");
+        }
+      })
 
       socket.on('screen audio', function(msg) {
         switch(msg) {

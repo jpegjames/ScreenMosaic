@@ -172,6 +172,11 @@ io.on('connection', function(socket){
     io.emit('screen audio', msg);
   });
 
+  socket.on('screen video', function(msg){
+    console.log('video: ' + msg);
+    io.emit('screen video', msg);
+  });
+
   // TODO: canvas
 
   socket.on('screen instruction', function(msg){
