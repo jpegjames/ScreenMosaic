@@ -61,6 +61,7 @@
       #video {
         height: 100%;
         width: 100%;
+        /* object-fit: cover; */
       }
 
       .offset {
@@ -78,7 +79,7 @@
       <!-- https://webkit.org/blog/6784/new-video-policies-for-ios/ -->
       <!-- Webkit / iOS 10+: <video muted> elements will also be allowed to autoplay without a user gesture. -->
       <!-- test source: https://www.w3schools.com/html/mov_bbb.mp4 -->
-      <video id="video" autoplay playsinline muted></video>
+      <video id="video" autoplay playsinline muted style="display: none;"></video>
 
       <img src="" class="media offset">
     </section>
@@ -126,6 +127,9 @@
             break;
           case 'pause':
             pauseVideo();
+            break;
+          case 'rewind':
+            rewindVideo();
             break;
           case 'stop':
             stopVideo();
