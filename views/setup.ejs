@@ -121,19 +121,25 @@
         </div>
 
 
-        <div class="class flex flex-wrap -mx-3 mb-2">
-
+        <div class="class flex flex-wrap mx-0 mt-8 mb-2">
+          <button class="my-2 w-48 bg-transparent hover:bg-blue text-blue-dark hover:text-white py-2 px-4 border border-blue hover:border-transparent rounded rounded-r-none focus:outline-none focus:shadow-outline" id="copy-json-data">Copy JSON</button>
+          <button class="my-2 w-48 bg-transparent hover:bg-grey text-grey hover:text-white py-2 px-4 border border-grey hover:border-transparent rounded rounded-l-none focus:outline-none focus:shadow-outline" id="save-json-data">Save</button><br>
         </div>
 
 
       </div>
     </div>
 
+    <textarea id="json" rows="8" cols="150" style="width: 0px; height: 0px; position: absolute; left: -100px;" readonly></textarea>
+
 
 
 
 
     <script type="text/javascript">
+      var screensJSON = <%- JSON.stringify(screensJSON) %>;
+
+
       $('#refresh-btn').click(refreshScreens);
       $('#show-token-btn').click(showTokens);
       $('#hide-token-btn').click(hideTokens);
@@ -142,11 +148,34 @@
       $('#show-grid-btn').click(showGrid);
       $('#hide-grid-btn').click(hideGrid);
 
+      $('#copy-json-data').click(function() {
+        copyScreenDataJSON();
+      })
 
+      $('#save-json-data').click(function() {
+        var c = confirm('Save function not yet developed. Copy data instead?');
+
+        if (c == true) {
+          copyScreenDataJSON();
+        }
+      })
+
+      function copyScreenDataJSON() {
+        var copyJSON = $('#json');
+        copyJSON.val(JSON.stringify(screensJSON, undefined, 2));
+        copyJSON.select();
+
+        try {
+          var successful = document.execCommand("copy");
+          var msg = successful ? 'successful!' : 'unsuccessful :(';
+          alert('Copied JSON screen data to clipboard was ' + msg);
+        } catch (err) {
+          console.log('Oops, unable to copy');
+        }
+      }
 
 
       // testing CSS setup
-      var screensJSON = <%- JSON.stringify(screensJSON) %>;
       var currentScreen = screensJSON[4];
 
       // change screen
