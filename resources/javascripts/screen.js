@@ -83,7 +83,38 @@ function _setCoverImage(src) {
   dom.show();
 }
 
+// --- Video functionality
+//
+var video;
 
+function setVideo(data, screenToken) {
+  video = document.getElementById("video");
+
+  if (data[screenToken] !== undefined) {
+    video.src = data[screenToken];
+    playVideo();
+  } else {
+    // Not sure if this is the correct thought process here
+    stopVideo();
+  }
+}
+
+function playVideo() {
+  video.play();
+}
+function pauseVideo() {
+  video.pause();
+}
+function stopVideo() {
+  video.pause();
+  video.src = '';
+}
+function loopVideo() {
+  video.loop = true;
+}
+function unloopVideo() {
+  video.loop = false;
+}
 
 
 // --- Audio functionality
@@ -93,7 +124,7 @@ var audio = new Audio();
 function setAudio(data, screenToken) {
   if (data[screenToken] !== undefined) {
     audio.src = data[screenToken];
-    audio.play();
+    playAudio();
   } else {
     // Not sure if this is the correct thought process here
     stopAudio();

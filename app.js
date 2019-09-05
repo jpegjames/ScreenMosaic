@@ -129,6 +129,7 @@ app.get('/setup', function(req, res) {
 
 // ================
 // Shared Functions
+// (not DRY, also in resize.js file)
 // ================
 
 function loadScreens() {
@@ -169,6 +170,11 @@ io.on('connection', function(socket){
   socket.on('screen audio', function(msg){
     console.log('audio: ' + msg);
     io.emit('screen audio', msg);
+  });
+
+  socket.on('screen video', function(msg){
+    console.log('video: ' + msg);
+    io.emit('screen video', msg);
   });
 
   // TODO: canvas
