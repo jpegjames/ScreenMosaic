@@ -32,8 +32,8 @@
   {
     "id": 4,
     "token": "3174vgQ",
-    "top": 500,
-    "left": 4060,
+    "top": 515,
+    "left": 4480,
     "width": 1024,
     "height": 600,
     "scale": 1,
@@ -42,8 +42,8 @@
   {
     "id": 5,
     "token": "X12YbhR",
-    "top": 510,
-    "left": 4900,
+    "top": 610,
+    "left": 5690,
     "width": 600,
     "height": 1024,
     "scale": 1,
@@ -142,8 +142,8 @@
   {
     "id": 15,
     "token": "Pby1hY4",
-    "top": 1225,
-    "left": 4485,
+    "top": 1195,
+    "left": 4460,
     "width": 1024,
     "height": 600,
     "scale": 1,
@@ -154,8 +154,8 @@
     "token": "RfC8Ncm",
     "top": 1505,
     "left": 6410,
-    "width": 600,
-    "height": 1024,
+    "width": 1024,
+    "height": 600,
     "scale": 1,
     "notes": " left"
   },
@@ -180,14 +180,24 @@
     "notes": " "
   },
   {
-    "id": 19,
+    "id": "19-dead",
     "token": "2aaWUS0",
     "top": 2935,
     "left": 1565,
     "width": 1024,
     "height": 600,
     "scale": 1,
-    "notes": ""
+    "notes": "died for some reason"
+  },
+  {
+    "id": 19,
+    "token": "SfrygWe",
+    "top": 2935,
+    "left": 1565,
+    "width": 1024,
+    "height": 600,
+    "scale": 1,
+    "notes": "replacement for previous 19 that died - touch only works on left side"
   },
   {
     "id": 20,
@@ -195,7 +205,7 @@
     "top": 2570,
     "left": 2840,
     "width": 1400,
-    "height": 942,
+    "height": 1050,
     "scale": 1,
     "notes": "iPad 2 - horizontal"
   },
@@ -211,13 +221,13 @@
   },
   {
     "id": 22,
-    "token": "5tianHa",
-    "top": 210,
-    "left": 2940,
+    "token": "5546Bm0",
+    "top": 1815,
+    "left": 5610,
     "width": 600,
     "height": 1024,
     "scale": 1,
-    "notes": "top left - red tablet with wifi issue"
+    "notes": ""
   },
   {
     "id": 23,
@@ -235,7 +245,7 @@
     "top": 1895,
     "left": 7745,
     "width": 1400,
-    "height": 942,
+    "height": 1050,
     "scale": 1,
     "notes": "iPad 1 - horizontal"
   },
@@ -285,7 +295,7 @@
     "top": 3540,
     "left": 2990,
     "width": 1400,
-    "height": 982,
+    "height": 1100,
     "scale": 1,
     "notes": "iPad Air - 1.636666x size of Amazon Fire"
   },
@@ -306,7 +316,7 @@
     "top": 3035,
     "left": 5500,
     "width": 860,
-    "height": 1024,
+    "height": 1150,
     "scale": 1,
     "notes": " "
   },
@@ -346,14 +356,14 @@
     "top": 3135,
     "left": 8820,
     "width": 1400,
-    "height": 942,
+    "height": 1050,
     "scale": 1,
     "notes": "iPad 2 - horizontal"
   },
   {
     "id": 36,
     "token": "aoFtxwQ",
-    "top": 3430,
+    "top": 4930,
     "left": 445,
     "width": 1024,
     "height": 600,
@@ -363,7 +373,7 @@
   {
     "id": 37,
     "token": "7yYZlhD",
-    "top": 3445,
+    "top": 4945,
     "left": 1650,
     "width": 1024,
     "height": 600,
@@ -373,7 +383,7 @@
   {
     "id": 38,
     "token": "lEfiDxN",
-    "top": 3215,
+    "top": 4715,
     "left": 2910,
     "width": 600,
     "height": 1024,
@@ -382,18 +392,18 @@
   },
   {
     "id": 39,
-    "token": "",
-    "top": 3215,
-    "left": 710,
+    "token": "cPHDGBs",
+    "top": 4700,
+    "left": 3570,
     "width": 600,
     "height": 1024,
     "scale": 1,
-    "notes": "top left - wifi issues"
+    "notes": "personal account"
   },
   {
     "id": 40,
     "token": "NTpj49U",
-    "top": 3570,
+    "top": 5070,
     "left": 4445,
     "width": 600,
     "height": 1024,
@@ -403,7 +413,7 @@
   {
     "id": 41,
     "token": "UtqysLn",
-    "top": 3545,
+    "top": 5045,
     "left": 5255,
     "width": 1024,
     "height": 600,
@@ -432,13 +442,13 @@
   },
   {
     "id": 44,
-    "token": "",
-    "top": 5000,
-    "left": 7000,
+    "token": "xEn7YyK",
+    "top": 4310,
+    "left": 8115,
     "width": 1024,
     "height": 600,
     "scale": 1,
-    "notes": "top left - blue tablet wifi issue"
+    "notes": "some scaling issues - red replacement for blue tablet with wifi issues"
   },
   {
     "id": 45,
@@ -453,7 +463,7 @@
   {
     "id": 46,
     "token": "6WhIxiw",
-    "top": 3535,
+    "top": 5035,
     "left": 6545,
     "width": 1024,
     "height": 600,
@@ -463,7 +473,7 @@
   {
     "id": 47,
     "token": "L0BGDat",
-    "top": 3600,
+    "top": 5100,
     "left": 7765,
     "width": 600,
     "height": 1024,
@@ -473,7 +483,7 @@
   {
     "id": 48,
     "token": "W3p9sL4",
-    "top": 3605,
+    "top": 5105,
     "left": 8625,
     "width": 600,
     "height": 1024,
@@ -483,7 +493,7 @@
   {
     "id": 49,
     "token": "ELwtZow",
-    "top": 4060,
+    "top": 5560,
     "left": 9365,
     "width": 600,
     "height": 1024,
@@ -493,7 +503,7 @@
   {
     "id": 50,
     "token": "OQhqDHb",
-    "top": 4230,
+    "top": 5730,
     "left": 870,
     "width": 600,
     "height": 1024,
@@ -505,7 +515,7 @@
   {
     "id": 51,
     "token": "vB61wiL",
-    "top": 4170,
+    "top": 5670,
     "left": 1675,
     "width": 1024,
     "height": 600,
@@ -515,7 +525,7 @@
   {
     "id": 52,
     "token": "h9Vk9Wp",
-    "top": 4965,
+    "top": 6260,
     "left": 1660,
     "width": 1024,
     "height": 600,
@@ -525,7 +535,7 @@
   {
     "id": 53,
     "token": "HiQYzGE",
-    "top": 4445,
+    "top": 5945,
     "left": 2990,
     "width": 1024,
     "height": 600,
@@ -534,18 +544,17 @@
   },
   {
     "id": 54,
-    "token": "",
-    "top": 5000,
-    "left": 710,
+    "token": "gLYHURm",
+    "top": 5730,
+    "left": 5265,
     "width": 1024,
     "height": 600,
-    "scale": 1,
-    "notes": "top left - wifi issue"
+    "scale": 1
   },
   {
     "id": 55,
     "token": "GDIm0Wj",
-    "top": 4290,
+    "top": 5790,
     "left": 6535,
     "width": 1024,
     "height": 600,
@@ -638,7 +647,7 @@
   },
   {
     "id": 301,
-    "token": "cPHDGBs",
+    "token": "_cPHDGBs",
     "top": 3215,
     "left": 3955,
     "width": 1024,
