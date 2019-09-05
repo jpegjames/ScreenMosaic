@@ -129,6 +129,7 @@ app.get('/setup', function(req, res) {
 
 // ================
 // Shared Functions
+// (not DRY, also in resize.js file)
 // ================
 
 function loadScreens() {
