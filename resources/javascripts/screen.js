@@ -91,7 +91,12 @@ function setVideo(data, screenToken) {
   video = document.getElementById("video");
 
   if (data[screenToken] !== undefined) {
+    // play video for specific screen
     video.src = data[screenToken];
+    playVideo();
+  } else if (data['all'] !== undefined) {
+    // play same video for all screens
+    video.src = data['all'];
     playVideo();
   } else {
     // Not sure if this is the correct thought process here
