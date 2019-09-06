@@ -98,20 +98,22 @@ function setVideo(data, screenToken) {
     // play same video for all screens
     video.src = data['all'];
     playVideo();
-  } else {
-    // Not sure if this is the correct thought process here
-    stopVideo();
   }
 }
 
 function playVideo() {
+  video.style.display = '';
   video.play();
 }
 function pauseVideo() {
   video.pause();
 }
+function rewindVideo() {
+  video.currentTime = 0;
+}
 function stopVideo() {
   video.pause();
+  video.style.display = 'none';
   video.src = '';
 }
 function loopVideo() {
