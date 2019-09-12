@@ -145,3 +145,38 @@ function stopAudio() {
   audio.pause();
   audio.src = '';
 }
+
+// --- Overlay functionality
+//
+
+var overlayLeft = 0;
+var overlayTop = 0;
+
+function handleOverlayCommand(data) {
+  // move x-axis
+  if (data['left'] !== undefined) {
+    overlayLeft = data['left'];
+    $('#overlay').css('left', overlayLeft);
+  }
+
+  // move y-axis
+  if (data['top'] !== undefined) {
+    overlayTop = data['top'];
+    $('#overlay').css('top', overlayTop);
+  }
+
+  // set content
+  if (data['html'] !== undefined) {
+    $('#overlay').html(data['html']);
+  }
+
+  // hide overlay
+  if (data == 'hide') {
+    $('#overlay').hide();
+  }
+
+  // show overlay
+  if (data == 'show') {
+    $('#overlay').show();
+  }
+}

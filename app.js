@@ -177,6 +177,11 @@ io.on('connection', function(socket){
     io.emit('screen video', msg);
   });
 
+  socket.on('screen overlay', function(msg){
+    console.log('overlay: ' + msg);
+    io.emit('screen overlay', msg);
+  });
+
   // TODO: canvas
 
   socket.on('screen instruction', function(msg){

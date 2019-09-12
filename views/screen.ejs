@@ -50,6 +50,17 @@
         font-weight: bold;
       }
 
+      #overlay-offset {
+        position: absolute;
+      }
+
+      #overlay {
+        position: relative;
+        transition: 0.5s all;
+        top: 0;
+        left: 0;
+      }
+
       #grid {
         background-image: url("/images/grid-overlay-x.png"), url("/images/grid-overlay-y.png"), url("/images/grid-pattern.png");
         position: absolute;
@@ -75,6 +86,10 @@
 
     <section id="render">
       <div id="grid" class="offset"></div>
+
+      <div id="overlay-offset" class="offset">
+        <div id="overlay" style="display: none;"></div>
+      </div>
 
       <!-- https://webkit.org/blog/6784/new-video-policies-for-ios/ -->
       <!-- Webkit / iOS 10+: <video muted> elements will also be allowed to autoplay without a user gesture. -->
@@ -119,6 +134,10 @@
       socket.on('screen color', function(msg) {
         setColor(msg, "<%= screenToken %>");
       });
+
+      socket.on('screen overlay', function(msg) {
+        handleOverlayCommand(msg)
+      })
 
       socket.on('screen video', function(msg) {
         switch(msg) {
@@ -194,9 +213,9 @@
         console.log(msg);
 
         if (msg["token"] == "<%= screenToken %>") {
-          $('#render .offset').css("top", msg["top"]);
-          $('#render .offset').css("left", msg["left"]);
-          // $('#render .media').css("transform", "scale(" + msg["scale"] + ")");
+          $('.offset').css("top", msg["top"]);
+          $('.offset').css("left", msg["left"]);
+          // $('.media').css("transform", "scale(" + msg["scale"] + ")");
         }
       }
 
