@@ -20,7 +20,7 @@ function setImage(data, screenToken, screenID) {
 
   // clear and hide image (end function)
   if (data == null){
-    $('#render img').attr('src', '#').hide();
+    $('#render img#screen-image').attr('src', '#').hide();
     return true;
   }
 
@@ -62,7 +62,7 @@ function setImage(data, screenToken, screenID) {
 
 
 function _setSingleImage(src) {
-  var dom = $('#render img');
+  var dom = $('#render img#screen-image');
   dom.removeClass('offset');
   dom.attr('src', src);
   dom.show();
@@ -77,7 +77,7 @@ function _setPreprocessedImage(unprocessed_src, screenID) {
 }
 
 function _setCoverImage(src) {
-  var dom = $('#render img');
+  var dom = $('#render img#screen-image');
   dom.addClass('offset');
   dom.attr('src', src);
   dom.show();
