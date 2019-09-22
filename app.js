@@ -152,6 +152,9 @@ io.on('connection', function(socket){
     // console.log('user disconnected');
   });
 
+
+  //  TODO: Standardize API for content on screen
+  //
   socket.on('screen grid', function(msg){
     console.log('grid: ' + msg);
     io.emit('screen grid', msg);
@@ -180,6 +183,12 @@ io.on('connection', function(socket){
   socket.on('screen overlay', function(msg){
     console.log('overlay: ' + msg);
     io.emit('screen overlay', msg);
+  });
+  
+  socket.on('screen iframe', function(msg){
+    console.log('iframe: ' + msg);
+    io.emit('screen iframe', msg);
+
   });
 
   // TODO: canvas

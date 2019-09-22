@@ -152,6 +152,7 @@ function stopAudio() {
   audio.src = '';
 }
 
+
 // --- Overlay functionality
 //
 
@@ -185,4 +186,37 @@ function handleOverlayCommand(data) {
   if (data == 'show') {
     $('#overlay').show();
   }
+}
+
+// --- iframe functionality
+//
+
+// set iframe
+function setIframe(data, screenToken, screenID) {
+
+  // clear and hide iframe (end function)
+  if (data == null || data == 'clear' || data == 'stop') {
+    _clearIframe();
+    return true;
+  }
+
+  // set iframe for this screen based off screenToken (end function)
+  if (data[screenToken] !== undefined) {
+    _setSingleIframe(data[screenToken]);
+    return true;
+  }
+
+  // set iframe for this screen based off screenID (end function)
+  if (data[screenID] !== undefined) {
+    _setSingleIframe(data[screenID]);
+    return true;
+  }
+}
+
+function _setSingleIframe(src) {
+  $('#iframe').attr('src', src).show();
+}
+
+function _clearIframe() {
+  $('#iframe').attr('src', '#').hide();
 }

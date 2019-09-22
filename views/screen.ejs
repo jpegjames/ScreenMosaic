@@ -75,6 +75,11 @@
         /* object-fit: cover; */
       }
 
+      #iframe {
+        height: 100%;
+        width: 100%;
+      }
+
       .offset {
         top: -<%= (screenData === undefined) ? 0 : screenData.top %>px;
         left: -<%= (screenData === undefined) ? 0 : screenData.left %>px;
@@ -96,7 +101,9 @@
       <!-- test source: https://www.w3schools.com/html/mov_bbb.mp4 -->
       <video id="video" autoplay playsinline muted style="display: none;"></video>
 
-      <img src="" id="screen-image" class="media offset">
+      <iframe id="iframe" src="" style="display: none;"></iframe>
+
+      <img id="image" src="" class="media offset">
     </section>
 
 
@@ -137,7 +144,12 @@
 
       socket.on('screen overlay', function(msg) {
         handleOverlayCommand(msg)
-      })
+      });
+
+      socket.on('screen iframe', function(msg) {
+        setIframe(msg, "<%= screenToken %>", <%= (screenData) ? screenData['id'] : null %>);
+      });
+
 
       socket.on('screen video', function(msg) {
         switch(msg) {
@@ -162,7 +174,7 @@
           default:
             setVideo(msg, "<%= screenToken %>");
         }
-      })
+      });
 
       socket.on('screen audio', function(msg) {
         switch(msg) {
