@@ -99,8 +99,10 @@ function setVideo(data, screenToken) {
 }
 
 function playVideo() {
-  video.style.display = '';
-  video.play();
+  if (video.src != undefined && video.src != '') {
+    video.style.display = '';
+    video.play();
+  }
 }
 function pauseVideo() {
   video.pause();
@@ -111,7 +113,8 @@ function rewindVideo() {
 function stopVideo() {
   video.pause();
   video.style.display = 'none';
-  video.src = '';
+  video.src = '';               // this will clear it cached in the DOM
+  video.removeAttribute('src'); // this will remove source so that it doesn't use a root url
 }
 function loopVideo() {
   video.loop = true;
