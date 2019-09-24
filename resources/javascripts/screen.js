@@ -87,11 +87,19 @@ function _setCoverImage(src) {
 //
 var video;
 
-function setVideo(data, screenToken) {
+function setVideo(data, screenToken, screenID) {
   video = document.getElementById("video");
 
   if (data[screenToken] !== undefined) {
     video.src = data[screenToken];
+    video.style.display = '';
+
+    playVideo();
+    return true;
+  }
+
+  if (data[screenID] !== undefined) {
+    video.src = data[screenID];
     video.style.display = '';
 
     playVideo();

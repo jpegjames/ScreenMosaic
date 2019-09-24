@@ -160,7 +160,7 @@
             unloopVideo();
             break;
           default:
-            setVideo(msg, "<%= screenToken %>");
+            setVideo(msg, "<%= screenToken %>", <%= (screenData) ? screenData['id'] : null %>);
         }
       })
 
