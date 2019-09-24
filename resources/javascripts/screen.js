@@ -20,7 +20,7 @@ function setImage(data, screenToken, screenID) {
 
   // clear and hide image (end function)
   if (data == null){
-    $('#render img').attr('src', '#').hide();
+    $('#render img#screen-image').attr('src', '#').hide();
     return true;
   }
 
@@ -62,7 +62,7 @@ function setImage(data, screenToken, screenID) {
 
 
 function _setSingleImage(src) {
-  var dom = $('#render img');
+  var dom = $('#render img#screen-image');
   dom.removeClass('offset');
   dom.attr('src', src);
   dom.show();
@@ -77,7 +77,7 @@ function _setPreprocessedImage(unprocessed_src, screenID) {
 }
 
 function _setCoverImage(src) {
-  var dom = $('#render img');
+  var dom = $('#render img#screen-image');
   dom.addClass('offset');
   dom.attr('src', src);
   dom.show();
@@ -91,9 +91,12 @@ function setVideo(data, screenToken, screenID) {
   video = document.getElementById("video");
 
   if (data[screenToken] !== undefined) {
+    // play video for specific screen
     video.src = data[screenToken];
-    video.style.display = '';
-
+    playVideo();
+  } else if (data['all'] !== undefined) {
+    // play same video for all screens
+    video.src = data['all'];
     playVideo();
     return true;
   }
@@ -107,8 +110,10 @@ function setVideo(data, screenToken, screenID) {
 }
 
 function playVideo() {
-  video.style.display = '';
-  video.play();
+  if (video.src != undefined && video.src != '') {
+    video.style.display = '';
+    video.play();
+  }
 }
 function pauseVideo() {
   video.pause();
@@ -119,7 +124,8 @@ function rewindVideo() {
 function stopVideo() {
   video.pause();
   video.style.display = 'none';
-  video.src = '';
+  video.src = '';               // this will clear it cached in the DOM
+  video.removeAttribute('src'); // this will remove source so that it doesn't use a root url
 }
 function loopVideo() {
   video.loop = true;
@@ -154,6 +160,7 @@ function stopAudio() {
   audio.src = '';
 }
 
+
 // --- Overlay functionality
 //
 
@@ -187,4 +194,37 @@ function handleOverlayCommand(data) {
   if (data == 'show') {
     $('#overlay').show();
   }
+}
+
+// --- iframe functionality
+//
+
+// set iframe
+function setIframe(data, screenToken, screenID) {
+
+  // clear and hide iframe (end function)
+  if (data == null || data == 'clear' || data == 'stop') {
+    _clearIframe();
+    return true;
+  }
+
+  // set iframe for this screen based off screenToken (end function)
+  if (data[screenToken] !== undefined) {
+    _setSingleIframe(data[screenToken]);
+    return true;
+  }
+
+  // set iframe for this screen based off screenID (end function)
+  if (data[screenID] !== undefined) {
+    _setSingleIframe(data[screenID]);
+    return true;
+  }
+}
+
+function _setSingleIframe(src) {
+  $('#iframe').attr('src', src).show();
+}
+
+function _clearIframe() {
+  $('#iframe').attr('src', '#').hide();
 }

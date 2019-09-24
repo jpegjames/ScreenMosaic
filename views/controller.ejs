@@ -75,7 +75,7 @@
 
       $('.toggle-image').not('#glitch-test').click(function() {
         $(this).addClass('active');
-        socket.emit('screen image', $(this).attr('src'));
+        socket.emit('screen image', {"cover": $(this).attr('src')});
       })
 
       $('#glitch-test').click(function() {
