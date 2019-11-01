@@ -52,6 +52,7 @@
 
       #overlay-offset {
         position: absolute;
+        z-index: 1000;
       }
 
       #overlay {
@@ -172,7 +173,7 @@
             unloopVideo();
             break;
           default:
-            setVideo(msg, "<%= screenToken %>");
+            setVideo(msg, "<%= screenToken %>", <%= (screenData) ? screenData['id'] : null %>);
         }
       });
 

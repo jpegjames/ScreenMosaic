@@ -87,7 +87,7 @@ function _setCoverImage(src) {
 //
 var video;
 
-function setVideo(data, screenToken) {
+function setVideo(data, screenToken, screenID) {
   video = document.getElementById("video");
 
   if (data[screenToken] !== undefined) {
@@ -97,6 +97,14 @@ function setVideo(data, screenToken) {
   } else if (data['all'] !== undefined) {
     // play same video for all screens
     video.src = data['all'];
+    playVideo();
+    return true;
+  }
+
+  if (data[screenID] !== undefined) {
+    video.src = data[screenID];
+    video.style.display = '';
+
     playVideo();
   }
 }
