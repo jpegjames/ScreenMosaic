@@ -101,22 +101,33 @@ function setVideo(data, screenToken) {
   }
 }
 
+function hasVideo(){
+  return (video !== undefined && video.src != undefined && video.src != '');
+}
+
 function playVideo() {
-  if (video.src != undefined && video.src != '') {
+  if (hasVideo()) {
     video.style.display = '';
     video.play();
   }
 }
 function pauseVideo() {
-  video.pause();
+  if (hasVideo()) {
+    video.pause();
+  }
 }
 function rewindVideo() {
-  video.currentTime = 0;
+  if (hasVideo()) {
+    video.currentTime = 0;
+  }
 }
 function stopVideo() {
-  video.pause();
-  video.style.display = 'none';
-  video.src = '';
+  if (hasVideo()) {
+    video.pause();
+    video.style.display = 'none';
+    video.src = '';               // this will clear it cached in the DOM
+    video.removeAttribute('src'); // this will remove source so that it doesn't use a root url
+  }
 }
 function loopVideo() {
   video.loop = true;
