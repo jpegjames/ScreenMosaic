@@ -102,8 +102,10 @@ function setVideo(data, screenToken) {
 }
 
 function playVideo() {
-  video.style.display = '';
-  video.play();
+  if (video.src != undefined && video.src != '') {
+    video.style.display = '';
+    video.play();
+  }
 }
 function pauseVideo() {
   video.pause();
@@ -121,6 +123,13 @@ function loopVideo() {
 }
 function unloopVideo() {
   video.loop = false;
+}
+
+function hideControls() {
+  video.controls = false;
+}
+function showControls() {
+  video.controls = true;
 }
 
 
