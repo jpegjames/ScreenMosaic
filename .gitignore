@@ -1,5 +1,5 @@
-# ignore public folder (other than app directory)
-public/*
+# include public folder for gallery branch
+# public/*
 
 # ignore .DS_Store
 .DS_Store
