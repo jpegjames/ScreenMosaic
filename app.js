@@ -152,6 +152,10 @@ io.on('connection', function(socket){
     // console.log('user disconnected');
   });
 
+  // processing testing
+  socket.on('kinect', function(data) {
+    console.log(data);
+  });
 
   //  TODO: Standardize API for content on screen
   //
