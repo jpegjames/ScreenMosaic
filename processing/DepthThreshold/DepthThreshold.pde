@@ -20,7 +20,7 @@ PImage depthImg;
 
 // Which pixels do we care about?
 int minDepth =  60;
-int maxDepth = 860;
+int maxDepth = 960;
 
 // What is the kinect's angle
 float angle;
@@ -61,7 +61,7 @@ void setup() {
 
 
   setupHitpoints();
-  println(hitpoints);
+  //println(hitpoints);
 
   // Blank image
   depthImg = new PImage(kinect.width, kinect.height);
@@ -161,12 +161,12 @@ void draw() {
     }
   }
   
-  if (!hitpoints.equals(prevHitpoints)) {
-   print("changed "); 
-   // send socket data
-  } else {
-    // do nothing?
-  }
+  //if (!hitpoints.equals(prevHitpoints)) {
+  // print("changed "); 
+  // // send socket data
+  //} else {
+  //  // do nothing?
+  //}
   
   // socket testing
   wsc.sendMessage("42[\"kinect\",{\"data\":" + hitpoints + "}]");
