@@ -19,6 +19,10 @@ var io            = require('socket.io')(http, {
 var Cookies       = require('cookies');
 var randomstring  = require("randomstring");
 
+// gallery install specific
+var lastColorChange = 0;        // stores milliseconds of last time color changed
+var colorChangeInterval = 2000; // milliseconds
+
 http.listen(port, function(){
   console.log('listening on *:' + port);
 });
@@ -141,15 +145,39 @@ function loadScreens() {
 }
 
 
+// ================
+// Gallery specific functions
+// ================
+
+function changeColor(hitData) {
+  if (Date.now() > lastColorChange + colorChangeInterval) {
+    var randomColor = "#000000".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
+    io.emit('screen color', {'color': randomColor, 'hitData': hitData});
+    lastColorChange = Date.now();
+
+    console.log('change color');
+    console.log(randomColor);
+  }
+}
+
 
 // ================
 // Socket Logic
 // ================
 
 io.on('connection', function(socket){
-  // console.log('a user connected');
+  console.log('a user connected');
   socket.on('disconnect', function(){
-    // console.log('user disconnected');
+    console.log('user disconnected');
+  });
+
+  // processing testing
+  socket.on('message', function(msg) {
+    console.log(msg);
+  });
+  socket.on('kinect', function(data) {
+    console.log(data);
+    changeColor(data);
   });
 
   // processing testing
