@@ -302,21 +302,21 @@
 
     <!-- gallery specific -->
     <script type="text/javascript">
-      // build pixels on page load
-      var pixelWidth = 30;
-      var pixelHeight = 15;
-      var pixelTemplate = document.getElementById('pixel-template');
-      var pixelNumber = parseInt($(window).width() / pixelWidth) * parseInt($(window).height() / pixelHeight);
-
-      var i = 0;
-      while (i < pixelNumber) {
-        var pixelClone = pixelTemplate.cloneNode(true);
-        pixelClone.id = "pixel-" + i;
-        pixelClone.style.width = pixelWidth + 'px';
-        pixelClone.style.height = pixelHeight + 'px';
-        document.getElementById('pixel-container').appendChild(pixelClone);
-        i ++;
-      }
+      // // build pixels on page load
+      // var pixelWidth = 30;
+      // var pixelHeight = 15;
+      // var pixelTemplate = document.getElementById('pixel-template');
+      // var pixelNumber = parseInt($(window).width() / pixelWidth) * parseInt($(window).height() / pixelHeight);
+      //
+      // var i = 0;
+      // while (i < pixelNumber) {
+      //   var pixelClone = pixelTemplate.cloneNode(true);
+      //   pixelClone.id = "pixel-" + i;
+      //   pixelClone.style.width = pixelWidth + 'px';
+      //   pixelClone.style.height = pixelHeight + 'px';
+      //   document.getElementById('pixel-container').appendChild(pixelClone);
+      //   i ++;
+      // }
 
 
       // set pixel colors
@@ -362,42 +362,56 @@
         var screenHeight = <%= (screenData === undefined) ? 600 : screenData.height %>;
         var screenWidth = <%= (screenData === undefined) ? 600 : screenData.width %>;
 
-        console.log('set color');
-        console.log(hitData);
-        for(index = 0; index < hitData.length; index++) {
-          hitPoint = hitData[index]; // [x,y,z]
+        if (hitData === undefined) {
+          depthValue = 1;
+        } else {
+          // console.log('set color');
+          // console.log(hitData);
+          for(index = 0; index < hitData.length; index++) {
+            hitPoint = hitData[index]; // [x,y,z]
 
-          // store all depth values
-          allDepthValues.push(hitPoint[2]);
+            // store all depth values
+            allDepthValues.push(hitPoint[2]);
 
-          // get depth value related to current screen
-          if (
-            hitPoint[0] * depthMultiplier > screenLeft &&
-            hitPoint[0] * depthMultiplier < screenLeft + screenWidth &&
-            hitPoint[1] * depthMultiplier > screenTop &&
-            hitPoint[1] * depthMultiplier < screenTop + screenHeight
-          ) {
-            depthValues.push(hitPoint[2]);
+            // get depth value related to current screen
+            if (
+              hitPoint[0] * depthMultiplier > screenLeft &&
+              hitPoint[0] * depthMultiplier < screenLeft + screenWidth &&
+              hitPoint[1] * depthMultiplier > screenTop &&
+              hitPoint[1] * depthMultiplier < screenTop + screenHeight
+            ) {
+              console.log('hit');
+              depthValues.push(hitPoint[2]);
+            }
+          }
+
+          // only use depth value if any depth is captured by Kinect
+          if (arrAvg(allDepthValues) != 0) {
+            depthValue = arrAvg(depthValues);
           }
         }
 
-        // only use depth value if any depth is captured by Kinect
-        if (arrAvg(allDepthValues) != 0) {
-          depthValue = arrAvg(depthValues);
-        }
+        // console.log(depthValues);
+        // console.log(depthValue);
+        //
+        // jss.set('.pixel .red', {
+        //   height: parseInt(redValue, 16) * depthValue / 255 * 100 + '%'
+        // })
+        // jss.set('.pixel .green', {
+        //   height: parseInt(greenValue, 16) * depthValue / 255 * 100 + '%'
+        // })
+        // jss.set('.pixel .blue', {
+        //   height: parseInt(blueValue, 16) * depthValue / 255 * 100 + '%'
+        // })
 
-        console.log(depthValues);
-        console.log(depthValue);
+        // without pixels
+        redValue = parseInt(redValue, 16) * depthValue;
+        greenValue = parseInt(greenValue, 16) * depthValue;
+        blueValue = parseInt(blueValue, 16) * depthValue;
 
-        jss.set('.pixel .red', {
-          height: parseInt(redValue, 16) * depthValue / 255 * 100 + '%'
-        })
-        jss.set('.pixel .green', {
-          height: parseInt(greenValue, 16) * depthValue / 255 * 100 + '%'
-        })
-        jss.set('.pixel .blue', {
-          height: parseInt(blueValue, 16) * depthValue / 255 * 100 + '%'
-        })
+        console.log(hex);
+        document.body.style.backgroundColor = 'rgb(' + [redValue, greenValue, blueValue].join(',') + ')';
+
       }
 
     </script>
