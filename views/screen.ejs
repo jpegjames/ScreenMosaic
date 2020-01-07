@@ -7,6 +7,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <script src="/javascripts/jquery.min.js"></script>
     <script src="/javascripts/screen.js"></script>
+    <script src="/javascripts/jss.min.js"></script>
 
     <style media="screen">
       html, body {
@@ -74,6 +75,73 @@
         left: -<%= (screenData === undefined) ? 0 : screenData.left %>px;
       }
     </style>
+
+    <!-- gallery specific -->
+    <style media="screen">
+      body {
+        background: #000;
+      }
+      #pixel-container {
+        overflow: auto;
+        /* filter: blur(1px); */
+        position: absolute;
+        top: 0;
+      }
+      #pixel-template {
+        display: none;
+      }
+      .pixel {
+        float: left;
+        /* border: 1px solid #333; */
+        border-bottom: 1px solid #333;
+        overflow: hidden;
+        position: relative;
+
+        /* filter: blur(1px) brightness(1.5); */
+      }
+      .pixel div {
+        height: 100%;
+        width: 33%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        /* transition: 200ms all; */
+        /* border-radius: 50%; */
+      }
+      .pixel .red {
+        background: #ff0000;
+        left: 0;
+      }
+      .pixel .green {
+        background: #00ff00;
+        left: 33%;
+      }
+      .pixel .blue {
+        background: #0000ff;
+        left: 66%;
+        width: 34%;
+      }
+
+      #color-swatch {
+        height: 40px;
+        width: 40px;
+        margin-top: 20px;
+        /* border: 1px solid #ccc; */
+      }
+
+      .bold-type {
+        position: absolute;
+        width: 100%;
+        top: 100px;
+        text-align: center;
+        font-size: 160px;
+        font-family: arial;
+        font-weight: bold;
+        z-index: 10;
+        color: #fff;
+        text-shadow: 6px 6px #000;
+      }
+    </style>
   </head>
 
   <body>
@@ -89,6 +157,14 @@
       <iframe id="iframe" src="" style="display: none;"></iframe>
 
       <img id="image" src="" class="media offset">
+
+      <div id="pixel-container">
+        <div class="pixel" id="pixel-template">
+          <div class="red"></div>
+          <div class="green"></div>
+          <div class="blue"></div>
+        </div>
+      </div>
     </section>
 
 
@@ -124,7 +200,12 @@
       });
 
       socket.on('screen color', function(msg) {
-        setColor(msg, "<%= screenToken %>");
+        // setColor(msg, "<%= screenToken %>");
+        //
+        // console.log(msg);
+        hitData = msg['hitData']['data'];
+        setPixelColor(msg['color'], hitData); // does not set specific screen color
+
       });
 
       socket.on('screen iframe', function(msg) {
@@ -218,6 +299,108 @@
 
     </script>
 
+
+    <!-- gallery specific -->
+    <script type="text/javascript">
+      // build pixels on page load
+      var pixelWidth = 30;
+      var pixelHeight = 15;
+      var pixelTemplate = document.getElementById('pixel-template');
+      var pixelNumber = parseInt($(window).width() / pixelWidth) * parseInt($(window).height() / pixelHeight);
+
+      var i = 0;
+      while (i < pixelNumber) {
+        var pixelClone = pixelTemplate.cloneNode(true);
+        pixelClone.id = "pixel-" + i;
+        pixelClone.style.width = pixelWidth + 'px';
+        pixelClone.style.height = pixelHeight + 'px';
+        document.getElementById('pixel-container').appendChild(pixelClone);
+        i ++;
+      }
+
+
+      // set pixel colors
+      //
+      function setPixelColor(hex, hitData) {
+        // // Change color
+        // // -------------------
+        // //
+        // var redPixel = hex.replace(hex.substring(3,7), '0000');
+        // var greenPixel = hex.replace(hex.substring(1,3), '00').replace(hex.substring(5,7), '00');
+        // var bluePixel = hex.replace(hex.substring(1,5), '0000');
+        //
+        // $('.pixel .red').css('background', redPixel);
+        // $('.pixel .green').css('background', greenPixel);
+        // $('.pixel .blue').css('background', bluePixel);
+        //
+        //
+        // jss.set('.pixel .red', {
+        //   background: redPixel
+        // })
+        // jss.set('.pixel .green', {
+        //   background: greenPixel
+        // })
+        // jss.set('.pixel .blue', {
+        //   background: bluePixel
+        // })
+
+        // Change size
+        // -------------------
+        //
+        var redValue = hex.substring(1,3);
+        var greenValue = hex.substring(3,5);
+        var blueValue = hex.substring(5,7);
+
+        var depthValue = 1;
+        var depthValues = [];
+        var allDepthValues = [];
+        var depthMultiplier = 13;
+        const arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
+
+        var screenTop = <%= (screenData === undefined) ? 0 : screenData.top %>;
+        var screenLeft = <%= (screenData === undefined) ? 0 : screenData.left %>;
+        var screenHeight = <%= (screenData === undefined) ? 600 : screenData.height %>;
+        var screenWidth = <%= (screenData === undefined) ? 600 : screenData.width %>;
+
+        console.log('set color');
+        console.log(hitData);
+        for(index = 0; index < hitData.length; index++) {
+          hitPoint = hitData[index]; // [x,y,z]
+
+          // store all depth values
+          allDepthValues.push(hitPoint[2]);
+
+          // get depth value related to current screen
+          if (
+            hitPoint[0] * depthMultiplier > screenLeft &&
+            hitPoint[0] * depthMultiplier < screenLeft + screenWidth &&
+            hitPoint[1] * depthMultiplier > screenTop &&
+            hitPoint[1] * depthMultiplier < screenTop + screenHeight
+          ) {
+            depthValues.push(hitPoint[2]);
+          }
+        }
+
+        // only use depth value if any depth is captured by Kinect
+        if (arrAvg(allDepthValues) != 0) {
+          depthValue = arrAvg(depthValues);
+        }
+
+        console.log(depthValues);
+        console.log(depthValue);
+
+        jss.set('.pixel .red', {
+          height: parseInt(redValue, 16) * depthValue / 255 * 100 + '%'
+        })
+        jss.set('.pixel .green', {
+          height: parseInt(greenValue, 16) * depthValue / 255 * 100 + '%'
+        })
+        jss.set('.pixel .blue', {
+          height: parseInt(blueValue, 16) * depthValue / 255 * 100 + '%'
+        })
+      }
+
+    </script>
 
   </body>
 </html>
