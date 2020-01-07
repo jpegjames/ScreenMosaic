@@ -318,6 +318,14 @@
       //   i ++;
       // }
 
+      function arrAvg(arr) {
+        var total = 0;
+        for(var i = 0; i < arr.length; i++) {
+            total += arr[i];
+        }
+        return total / arr.length;
+      }
+
 
       // set pixel colors
       //
@@ -355,7 +363,6 @@
         var depthValues = [];
         var allDepthValues = [];
         var depthMultiplier = 13;
-        const arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
 
         var screenTop = <%= (screenData === undefined) ? 0 : screenData.top %>;
         var screenLeft = <%= (screenData === undefined) ? 0 : screenData.left %>;
@@ -409,7 +416,7 @@
         greenValue = parseInt(greenValue, 16) * depthValue;
         blueValue = parseInt(blueValue, 16) * depthValue;
 
-        console.log(hex);
+        // console.log(hex);
         document.body.style.backgroundColor = 'rgb(' + [redValue, greenValue, blueValue].join(',') + ')';
 
       }
