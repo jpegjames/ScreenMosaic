@@ -80,7 +80,7 @@ void draw() {
     // check Kinect depth
     int hitpointPixelNumber = int(hitpoint.y) * kinect.width + int(hitpoint.x); // -1 (???)
     if (rawDepth[hitpointPixelNumber] >= minDepth && rawDepth[hitpointPixelNumber] <= maxDepth) {
-      hitpoint.z = 1;
+      hitpoint.z = (rawDepth[hitpointPixelNumber] - minDepth) / maxDepth; // range: 0..1
     } else {
       hitpoint.z = 0;
     }

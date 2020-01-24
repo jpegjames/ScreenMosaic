@@ -200,11 +200,11 @@
       });
 
       socket.on('screen color', function(msg) {
-        // setColor(msg, "<%= screenToken %>");
+        setColor(msg, "<%= screenToken %>");
         //
         // console.log(msg);
-        hitData = msg['hitData']['data'];
-        setPixelColor(msg['color'], hitData); // does not set specific screen color
+        // hitData = msg['hitData']['data'];
+        // setPixelColor(msg['color'], hitData); // does not set specific screen color
 
       });
 

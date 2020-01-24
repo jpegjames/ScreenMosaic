@@ -11,7 +11,22 @@ function setGrid(b) {
 
 // --- Visual functionality
 //
-function setColor(color) {
+function setColor(data, screenToken) {
+  
+  // if only color value is passed, set all screens to background color (end function)
+  if (typeof(data) === 'string') {
+    _setSingleColor(data);
+    return true;
+  }
+
+  // set color for this screen based off screenToken (end function)
+  if (data[screenToken] !== undefined) {
+    _setSingleColor(data[screenToken]);
+    return true;
+  }
+}
+
+function _setSingleColor(color) {
   $('#render').css('background-color', color);
 }
 
