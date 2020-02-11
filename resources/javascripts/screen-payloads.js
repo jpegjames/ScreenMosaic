@@ -7,28 +7,62 @@ var v2 = {
     "screen image": {"preprocessed": "images/v2/part2a.png"}
   },
   8000: {
-    "screen image": {"preprocessed": "images/v2/part2b.png"}
+    "screen image": {
+      10: "images/v2/part2b-10.png",
+      11: "images/v2/part2b-11.png",
+      12: "images/v2/part2b-12.png",
+      13: "images/v2/part2b-13.png",
+      17: "images/v2/part2b-17.png",
+      18: "images/v2/part2b-18.png",
+      19: "images/v2/part2b-19.png",
+      20: "images/v2/part2b-20.png"
+    }
   },
   9000: {
-    "screen image": {"preprocessed": "images/v2/part2c.png"}
+    "screen image": {
+      6: "images/v2/part2c-6.png",
+      10: "images/v2/part2c-10.png",
+      11: "images/v2/part2c-11.png",
+      12: "images/v2/part2c-12.png",
+      13: "images/v2/part2c-13.png",
+      14: "images/v2/part2c-14.png",
+      21: "images/v2/part2c-21.png",
+      22: "images/v2/part2c-22.png"
+    }
   },
   10000: {
-    "screen image": {"preprocessed": "images/v2/part2d.png"}
+    "screen image": {
+      12: "images/v2/part2d-12.png",
+      13: "images/v2/part2d-13.png",
+      14: "images/v2/part2d-14.png",
+      21: "images/v2/part2d-21.png",
+      22: "images/v2/part2d-22-moshed.gif"
+    }
   },
   15000: {
-    "screen image": {"preprocessed": "images/v2/part3.png"}
+    "screen image": {
+      "preprocessed": "images/v2/part3.png",
+      12: "images/v2/part3-12-moshed3.gif"
+    }
   },
   20000: {
-    "screen image": {"preprocessed": "images/v2/part4.png"}
+    "screen image": {"preprocessed": "images/v2/part4a.png"}
   },
   25000: {
+    "screen image": {"preprocessed": "images/v2/part4b.png"}
+  },
+  30000: {
     "screen image": {"preprocessed": "images/v2/part5a.png"}
   },
-  27000: {
-    "screen image": {13: "images/v2/part5b-13.png"}
+  32000: {
+    "screen image": {
+      13: "images/v2/part5b-13.png"
+    }
   },
-  29000: {
-    "screen image": {22: "images/v2/part5c-22.png"}
+  34000: {
+    "screen image": {
+      22: "images/v2/part5c-22.png"
+    }
   }
 }
 
