@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Gallery</title>
+
+    <link href="/stylesheets/tailwind.min.css" rel="stylesheet">
+    <script src="/javascripts/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/javascripts/screen-payloads.js"></script>
+    <script src="/javascripts/exec-payload.js"></script>
+  </head>
+  <body>
+
+    <div class="">
+      <!-- <button class="my-2 w-48 bg-transparent hover:bg-grey text-grey hover:text-white py-2 px-4 border border-grey hover:border-transparent rounded rounded-r-none focus:outline-none focus:shadow-outline" type="button" name="payload1" id="payloadTest1">Payload Test 1</button> -->
+    </div>
+
+
+    <!--  -->
+
+    <button class="my-2 w-48 bg-transparent hover:bg-blue text-blue-dark hover:text-white py-2 px-4 border border-blue hover:border-transparent rounded rounded-r-none focus:outline-none focus:shadow-outline" type="button" name="v2" id="restart">Restart</button>
+
+
+
+
+
+    <script type="text/javascript">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      $(document).ready(function() {
+        var keyframes = Object.keys(v2)
+        var lastKeyframe = keyframes[keyframes.length - 1]
+        var playbackLength = Number(lastKeyframe) + 15000; // stays on last frame 15 seconds
+
+        // play on load
+        setPayloadTimer(v2);
+
+        // play 40 seconds later (loop)
+        var payloadLoop = setInterval(function() {
+          setPayloadTimer(v2);
+        }, playbackLength);
+
+        // restart
+        $('#restart').click(function() {
+          clearInterval(payloadLoop);
+          setPayloadTimer(v2);
+          payloadLoop = setInterval(function() {
+            setPayloadTimer(v2);
+          }, playbackLength);
+        });
+
+
+
+      })
+
+
+    </script>
+
+  </body>
+</html>
