@@ -1,12 +1,15 @@
 // gallery v2
 var v2 = {
   0: {
+    "screen image": null
+  },
+  10000: {
     "screen image": {"preprocessed": "images/v2/part1.png"}
   },
-  7000: {
+  17000: {
     "screen image": {"preprocessed": "images/v2/part2a.png"}
   },
-  8000: {
+  21000: {
     "screen image": {
       10: "images/v2/part2b-10.png",
       11: "images/v2/part2b-11.png",
@@ -18,7 +21,7 @@ var v2 = {
       20: "images/v2/part2b-20.png"
     }
   },
-  9000: {
+  25000: {
     "screen image": {
       6: "images/v2/part2c-6.png",
       10: "images/v2/part2c-10.png",
@@ -30,7 +33,7 @@ var v2 = {
       22: "images/v2/part2c-22.png"
     }
   },
-  10000: {
+  26000: {
     "screen image": {
       12: "images/v2/part2d-12.png",
       13: "images/v2/part2d-13.png",
@@ -39,27 +42,27 @@ var v2 = {
       22: "images/v2/part2d-22-moshed.gif"
     }
   },
-  15000: {
+  42000: {
     "screen image": {
       "preprocessed": "images/v2/part3.png",
       12: "images/v2/part3-12-moshed3.gif"
     }
   },
-  20000: {
+  52000: {
     "screen image": {"preprocessed": "images/v2/part4a.png"}
   },
-  25000: {
+  54000: {
     "screen image": {"preprocessed": "images/v2/part4b.png"}
   },
-  30000: {
+  59000: {
     "screen image": {"preprocessed": "images/v2/part5a.png"}
   },
-  32000: {
+  64000: {
     "screen image": {
       13: "images/v2/part5b-13.png"
     }
   },
-  34000: {
+  66000: {
     "screen image": {
       22: "images/v2/part5c-22.png"
     }
