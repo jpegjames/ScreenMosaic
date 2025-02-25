@@ -104,6 +104,40 @@ The server software also has a few tools to help align each screen in the overal
 
 ## Preprocessing
 
+The webserver can attempt to send one large image to all of the screens and offset each
+image using CSS. This works fine with smaller mosaics, but it can be problematic for larger
+setups because of the filesize required for one large image.
+
+Preprocessing the will splice the large image into individual images for each screen
+based on the data found in `screens.json`. If you send a command to display a preprocessed
+image, the server will automatically send the correct spliced image to each screen. 
+
+Run from command line:  
+`node resize.js [image]`
+
+> NOTE: The image is assumed to be in `/public/images`.   
+> This function will accept `/public/images` in the provided path which is useful for path hints within terminal.
+
+JPEG and PNG files are recommended. This script should handle any file supported by ImageMagick and graphicsmagick 
+but it is recommended to use web friendly files. The script will not convert an image to a different format.
+
+### Examples
+
+`node resize.js graphic1.jpg`  
+Will splice public/images/graphic1.jpg into multiple images as defined
+by the `screens.json` file.
+
+`node resize.js public/images/graphic1.jpg`  
+Will will work the same as above.
+
+### Caveats
+This is not an automatic proccess. If `screens.json` is changed, the images will need to be 
+reprocessed. The server does not keep track of these changes.
+
+If the image has not been preproccessed and a command for a preprocessed image is sent,
+the screens will attempt to display a file that is not found (404 error). The result will be
+that the screens show the background color (default is black). 
+
 ## Full Screen
 
 To simplify the setup process, each tablet loads the same URL hosted from the Node.js server, but each device generates a unique token that is stored as a cookie on the device (fig. 15). This allows the server to know where this screen is located within the X/Y grid and handle the media appropriately. This technique is similar in concept to how visitors to a website can get targeted ads specific to the user, even though every user is visiting the same page.
