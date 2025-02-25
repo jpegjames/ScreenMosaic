@@ -2,7 +2,11 @@
 // Usage
 // ====================
 // run from bash:
-// node.js resize.js [image_path]
+// node resize.js [image]
+//
+// NOTE: The image is assumed to be in /public/images
+//       This function will accept /public/images in the provided path
+//       which is useful for path hints within terminal. 
 
 
 
@@ -14,6 +18,8 @@
 var image = process.argv.slice(2)[0],
     screensJSON = loadScreens();
 
+// remove '/public/images' if it exists in the string
+image = image.replace(/^public\/images\//, '');
 
 console.log('Processing ' + image + '. Please wait...')
 
