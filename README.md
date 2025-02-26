@@ -115,7 +115,7 @@ socket.emit('screen image', {
     11: '/path/to/file-11.jpg",
     12: '/path/to/file-12.jpg",
     13: '/path/to/file-13.jpg",
-})
+});
 ```
 
 Combining:
@@ -123,7 +123,7 @@ Combining:
 socket.emit('screen image', {
     'preprocessed': '/path/to/file.jpg',
     55: '/path/to/animation.gif'
-})
+});
 ```
 
 
