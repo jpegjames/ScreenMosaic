@@ -41,6 +41,148 @@ running `node ./app.js`. By default this will run on port 1234, so `127.0.0.1:12
 when accessed locally or `[your-ip-address]:1234` when accessed by other devices on
 the same network.
 
+## Controlling the screens
+
+### Basic Commands (applies to all screens)
+
+#### Refresh
+```
+socket.emit('screen instruction', 'refresh');
+```
+
+#### Mute & Unmute
+```
+socket.emit('screen instruction', 'mute');
+socket.emit('screen instruction', 'unmute');
+```
+> NOTE: This also mutes and unmutes audio. 
+
+#### Display IDs and Tokens
+```
+socket.emit('screen instruction', 'show-token');
+socket.emit('screen instruction', 'hide-token');
+```
+
+#### Grid
+```
+socket.emit('screen grid', true);
+socket.emit('screen grid', false);
+````
+> TODO: `screen grid` uses a different syntax structure than the other commands above. This 
+should be updated in the future. 
+
+
+#### Move
+```
+socket.emit('screen instruction', {
+    token: 'tokenString',
+    top: '-100px',
+    left: '-50px',
+    scale: 1
+});
+```
+
+> NOTE: the `top`, `left` and `scale` parameters are CSS values that offsets the **grid** only. Because it is an offset, negative pixel values should be sent. This is used by the `/setup` page.
+
+
+### Multimedia Commands
+
+#### Images
+
+Sends the same image to all of the screens. The individual screens will handle the offset:
+```
+socket.emit('screen image', '/path/to/file.jpg');
+socket.emit('screen image', {'all': '/path/to/file.jpg'}); // same as above
+```
+
+Sends a preprocessed image to each screen (see below):
+```
+socket.emit('screen image', {
+    'preprocessed': '/path/to/file.jpg'
+});
+```
+
+
+Clear all images:
+```
+socket.emit('screen image', null);
+```
+
+Send an image to specific screens:
+```
+socket.emit('screen image', {
+    10: '/path/to/file-10.jpg",
+    11: '/path/to/file-11.jpg",
+    12: '/path/to/file-12.jpg",
+    13: '/path/to/file-13.jpg",
+})
+```
+
+Combining:
+```
+socket.emit('screen image', {
+    'preprocessed': '/path/to/file.jpg',
+    55: '/path/to/animation.gif'
+})
+```
+
+
+#### Colors
+```
+socket.emit('screen color', #FF0000); // Red
+
+# or
+
+var randomColor = "#000000".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
+socket.emit('screen color', randomColor);
+```
+
+
+#### Video
+Sends the same video to all screens:
+```
+socket.emit('screen video', 'path/to/video.mp4');
+```
+
+Sends a same video to a specific screens:
+```
+socket.emit('screen video', {
+    12: 'path/to/video.mp4'
+});
+```
+
+Commands:
+``` 
+socket.emit('screen video', 'play');
+socket.emit('screen video', 'pause');
+socket.emit('screen video', 'rewind');
+socket.emit('screen video', 'stop');
+socket.emit('screen video', 'loop');
+socket.emit('screen video', 'unloop');
+socket.emit('screen video', 'showControls');
+socket.emit('screen video', 'hideControls');
+```
+
+
+#### Audio
+```
+socket.emit('screen audio', {10: '/tv-static-05.mp3'});
+```
+> NOTE: Newer devices typically do not allow unmuted audio or video without first interacting
+with the web page. This feature will not work on every device. 
+
+
+#### iFrame
+```
+socket.emit('screen iframe', 'path-to-iframe.html');
+
+socket.emit('screen iframe', {
+    11: 'path/to/iframe.html',
+    12: 'path/to/iframe2.html'
+});
+```
+
+
 ## Screens Setup
 Start by arranging multiple screens and accessing the server from a web browser on
 the devices at `http://[your-ip-address]:1234/`.
@@ -97,6 +239,10 @@ path will use the generated token to reference the settings in `screens.json` bu
 you can also point to a specific screen config by using `/?id=[value]` in the browser.
 
 `/preview` This is an experimental  
+
+`/setup` This page provides some basic controls for the screen. It also provides controls
+to set and test the screen positions within the Mosaic. This is useful for the intial setup
+and the data can be saved to `screens.json`.
 
 
 ##
