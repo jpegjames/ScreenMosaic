@@ -55,7 +55,8 @@ socket.emit('screen instruction', 'refresh');
 socket.emit('screen instruction', 'mute');
 socket.emit('screen instruction', 'unmute');
 ```
-> NOTE: This also mutes and unmutes audio. 
+> NOTE: This mutes and unmutes the screen and audio. When muted, the screen will be black.
+> Changes can still happen while muted and will be shown once unmuted .
 
 #### Display IDs and Tokens
 ```javascript
