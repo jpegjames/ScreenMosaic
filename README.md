@@ -46,25 +46,25 @@ the same network.
 ### Basic Commands (applies to all screens)
 
 #### Refresh
-```
+```javascript
 socket.emit('screen instruction', 'refresh');
 ```
 
 #### Mute & Unmute
-```
+```javascript
 socket.emit('screen instruction', 'mute');
 socket.emit('screen instruction', 'unmute');
 ```
 > NOTE: This also mutes and unmutes audio. 
 
 #### Display IDs and Tokens
-```
+```javascript
 socket.emit('screen instruction', 'show-token');
 socket.emit('screen instruction', 'hide-token');
 ```
 
 #### Grid
-```
+```javascript
 socket.emit('screen grid', true);
 socket.emit('screen grid', false);
 ````
@@ -73,7 +73,7 @@ should be updated in the future.
 
 
 #### Move
-```
+```javascript
 socket.emit('screen instruction', {
     token: 'tokenString',
     top: '-100px',
@@ -90,13 +90,15 @@ socket.emit('screen instruction', {
 #### Images
 
 Sends the same image to all of the screens. The individual screens will handle the offset:
-```
+```javascript
 socket.emit('screen image', '/path/to/file.jpg');
-socket.emit('screen image', {'all': '/path/to/file.jpg'}); // same as above
+
+// alternatively:
+socket.emit('screen image', {'all': '/path/to/file.jpg'});
 ```
 
 Sends a preprocessed image to each screen (see below):
-```
+```javascript
 socket.emit('screen image', {
     'preprocessed': '/path/to/file.jpg'
 });
@@ -104,22 +106,22 @@ socket.emit('screen image', {
 
 
 Clear all images:
-```
+```javascript
 socket.emit('screen image', null);
 ```
 
 Send an image to specific screens:
-```
+```javascript
 socket.emit('screen image', {
-    10: '/path/to/file-10.jpg",
-    11: '/path/to/file-11.jpg",
-    12: '/path/to/file-12.jpg",
-    13: '/path/to/file-13.jpg",
+    10: '/path/to/file-10.jpg',
+    11: '/path/to/file-11.jpg',
+    12: '/path/to/file-12.jpg',
+    13: '/path/to/file-13.jpg',
 });
 ```
 
 Combining:
-```
+```javascript
 socket.emit('screen image', {
     'preprocessed': '/path/to/file.jpg',
     55: '/path/to/animation.gif'
@@ -128,11 +130,11 @@ socket.emit('screen image', {
 
 
 #### Colors
-```
-socket.emit('screen color', #FF0000); // Red
+```javascript
+// Set all screens to red:
+socket.emit('screen color', #FF0000); 
 
-# or
-
+// Set all screens to a random color:
 var randomColor = "#000000".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
 socket.emit('screen color', randomColor);
 ```
@@ -140,19 +142,19 @@ socket.emit('screen color', randomColor);
 
 #### Video
 Sends the same video to all screens:
-```
+```javascript
 socket.emit('screen video', 'path/to/video.mp4');
 ```
 
 Sends a same video to a specific screens:
-```
+```javascript
 socket.emit('screen video', {
     12: 'path/to/video.mp4'
 });
 ```
 
 Commands:
-``` 
+``` javascript
 socket.emit('screen video', 'play');
 socket.emit('screen video', 'pause');
 socket.emit('screen video', 'rewind');
@@ -165,7 +167,7 @@ socket.emit('screen video', 'hideControls');
 
 
 #### Audio
-```
+```javascript
 socket.emit('screen audio', {10: '/tv-static-05.mp3'});
 ```
 > NOTE: Newer devices typically do not allow unmuted audio or video without first interacting
@@ -173,7 +175,7 @@ with the web page. This feature will not work on every device.
 
 
 #### iFrame
-```
+```javascript
 socket.emit('screen iframe', 'path-to-iframe.html');
 
 socket.emit('screen iframe', {
