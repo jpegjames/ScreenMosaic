@@ -132,7 +132,7 @@ socket.emit('screen image', {
 #### Colors
 ```javascript
 // Set all screens to red:
-socket.emit('screen color', #FF0000); 
+socket.emit('screen color', '#FF0000'); 
 
 // Set all screens to a random color:
 var randomColor = "#000000".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
