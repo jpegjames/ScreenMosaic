@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ScreenMosaic Examples</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <link href="/stylesheets/tailwind.min.css" rel="stylesheet">
+
+    <script src="/javascripts/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+      var socket = io();
+    </script>
+    <script src="/javascripts/admin.js"></script>
+
+    <style media="screen">
+
+      .flex-container {
+        display: flex;
+      }
+
+      .flex-item {
+        width: 50%;
+      }
+
+      .move-inputs-container {
+        width: 150px;
+        float: left;
+      }
+      .move-buttons-container {
+        width: 80px;
+        text-align: center;
+        float: left;
+      }
+
+      label {
+        display: block;
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+    <div class="sm:block md:flex bg-grey-lighter">
+      <div class="flex-1 bg-grey-light px-4 py-2 m-2">
+        <h2 class="mb-4">Examples</h2>
+
+        <div class="flex flex-wrap -mx-3 mb-2">
+          <div class="px-3 mb-6 md:mb-0">
+            <label class="block tracking-wide text-xs font-bold mt-4 mb-2" for="screenCommandSelect">
+              Command
+            </label>
+            <div class="inline-block relative w-64">
+              <select id="screenCommandSelect" name="screenCommandSelect" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                <option value=""></option>
+                <option value="screen image">screen image</option>
+                <option value="screen color">screen color</option>
+              </select>
+              <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-3 mb-6 md:mb-0">
+            <label class="block tracking-wide text-xs font-bold mt-4 mb-2" for="screenTokenSelect">
+              Screen
+            </label>
+            <div class="inline-block relative w-64">
+              <select id="screenTokenSelect" name="screenTokenSelect" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                <option value="'all'">all</option>
+                <option value="'preprocessed'" id="preprocessed-option">preprocessed (image only)</option>
+                <% for(var i=0; i < screensJSON.length; i++) { %>
+                  <option value="<%= screensJSON[i].id %>"><%= screensJSON[i].id %> | <%= screensJSON[i].token %></option>
+                <% } %>
+              </select>
+              <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <label class="block tracking-wide text-xs font-bold mt-4 mb-2" for="screen-top-value">
+          Argument
+        </label>
+        <div class="relative">
+          <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" id="screenValue" type="text" placeholder="file path or color">
+          <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey">
+            <!-- px -->
+          </div>
+        </div>
+
+        <button class="mt-6 my-2 w-48 bg-transparent hover:bg-blue text-blue-dark hover:text-white py-2 px-4 border border-blue hover:border-transparent rounded rounded-r-none focus:outline-none focus:shadow-outline" id="send-command-btn">Send</button>
+      </div>
+
+      <div class="flex-1 bg-grey-light px-4 py-2 m-2">
+        <h2 class="mb-4">Examples</h2>
+
+        <code id="example-code">
+          
+          socket.emit('<span id="example-command">screen color</span>', {<span id="example-screen">'all'</span>: '<span id="example-value">--</span>'});
+
+        </code>
+      </div>
+    </div>
+
+
+    <script>
+      $('#screenCommandSelect').on('change', function() {
+        $('#example-command').html($(this).val());
+        $('#example-value').html('');
+        $('#screenValue').val('');
+
+        // TODO: toggle #preprocessed-option based on selection
+        // TODO: change labels for #screenValue
+      });
+
+      $('#screenTokenSelect').on('change', function() {
+        $('#example-screen').html($(this).val());
+      });
+
+      $('#screenValue').on('keyup', function() {
+        $('#example-value').html($(this).val());
+      });
+
+
+      $('#send-command-btn').on('click', function() {
+        // send command
+        $.globalEval($('#example-code').text().trim());
+      });
+
+    </script>
+
+  </body>
+</html>

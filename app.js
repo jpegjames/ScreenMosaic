@@ -125,6 +125,13 @@ app.get('/setup', function(req, res) {
   res.render('setup', {screensJSON: screensJSON});
 })
 
+// Examples
+app.get('/examples', function(req, res) {
+  screensJSON = loadScreens();
+
+  res.render('examples', {screensJSON: screensJSON});
+})
+
 
 
 // ================

@@ -247,6 +247,9 @@ you can also point to a specific screen config by using `/?id=[value]` in the br
 to set and test the screen positions within the Mosaic. This is useful for the intial setup
 and the data can be saved to `screens.json`.
 
+`/examples` This page provides working examples of the commands that can be sent
+to the ScreenMosaic to control it. This is a work-in-progress.
+
 
 ##
 The server software also has a few tools to help align each screen in the overall grid and to crop the images for the screens.
