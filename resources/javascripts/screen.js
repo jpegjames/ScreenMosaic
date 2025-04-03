@@ -11,7 +11,8 @@ function setGrid(b) {
 
 // --- Visual functionality
 //
-function setColor(color) {
+function setColor(color, screenToken) {
+  console.log(screenToken);
   $('#render').css('background-color', color);
 }
 
